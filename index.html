@@ -27,6 +27,7 @@
             display: flex;
             flex-direction: column;
             border-right: 1px solid #2a2f3d;
+            flex-shrink: 0;
         }
 
         .server-header {
@@ -57,7 +58,7 @@
         .channel-item {
             display: flex;
             align-items: center;
-            padding: 8px 12px;
+            padding: 10px 12px;
             border-radius: 6px;
             cursor: pointer;
             color: #9da5b4;
@@ -137,7 +138,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            max-width: 170px;
+            max-width: 150px;
         }
 
         /* --- MAIN CHAT AREA (KANAN) --- */
@@ -146,6 +147,7 @@
             display: flex;
             flex-direction: column;
             background-color: #13161c;
+            overflow: hidden;
         }
 
         .chat-header {
@@ -175,12 +177,12 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
-            padding-bottom: 40px; /* Jarak aman di bawah */
+            padding-bottom: 40px;
         }
 
         .message-group {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             animation: fadeIn 0.25s ease-in-out;
         }
 
@@ -190,8 +192,8 @@
         }
 
         .msg-avatar {
-            width: 40px;
-            height: 40px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
             background-color: #4f46e5;
             display: flex;
@@ -200,12 +202,13 @@
             font-weight: bold;
             color: white;
             flex-shrink: 0;
+            font-size: 14px;
         }
 
         .msg-content-wrapper {
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
             width: 100%;
         }
 
@@ -218,7 +221,7 @@
         .msg-author {
             font-weight: 600;
             color: #fff;
-            font-size: 15px;
+            font-size: 14.5px;
         }
 
         .msg-time {
@@ -228,23 +231,32 @@
 
         .msg-text {
             color: #d1d5db;
-            font-size: 14.5px;
+            font-size: 14px;
             line-height: 1.5;
-            max-width: 800px;
+            word-break: break-word;
+        }
+
+        /* PERBAIKAN WIDGET SPOTIFY EMBED */
+        .spotify-container {
+            margin-top: 8px;
+            max-width: 100%;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #000;
+            line-height: 0;
         }
 
         .spotify-player {
-            margin-top: 10px;
-            border-radius: 12px;
-            overflow: hidden;
-            max-width: 450px;
             border: none;
+            width: 100%;
+            height: 380px;
         }
 
         .reactions {
             display: flex;
             gap: 6px;
-            margin-top: 8px;
+            margin-top: 6px;
         }
 
         .reaction-badge {
@@ -267,6 +279,63 @@
             border-color: #4f46e5;
             color: #fff;
         }
+
+        /* --- 📱 RESPONSIVE LAYOUT UNTUK HP (MOBILE) --- */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column; /* Mengubah susunan jadi atas-bawah, bukan kiri-kanan */
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                border-right: none;
+                border-bottom: 1px solid #2a2f3d;
+            }
+
+            .server-header, .user-profile {
+                display: none; /* Menyembunyikan elemen yang gak begitu penting di layar kecil */
+            }
+
+            .channel-list {
+                display: flex;
+                padding: 10px;
+                gap: 8px;
+                overflow-x: auto; /* Menu kategori sekarang bisa digeser ke samping di HP */
+                white-space: nowrap;
+            }
+
+            .channel-category {
+                display: none;
+            }
+
+            .channel-item {
+                margin-bottom: 0;
+                padding: 6px 12px;
+                background-color: #13161c;
+                font-size: 13px;
+            }
+
+            .chat-header {
+                padding: 12px 15px;
+            }
+
+            .chat-header p {
+                font-size: 11px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .message-list {
+                padding: 15px;
+                gap: 16px;
+            }
+
+            .spotify-player {
+                height: 152px; /* Di HP ukuran pemutar lagu dibuat lebih ringkas (Compact Player) */
+            }
+        }
     </style>
 </head>
 <body>
@@ -276,9 +345,9 @@
         
         <div class="channel-list">
             <div class="channel-category">Kategori Blog</div>
-            <div class="channel-item active" onclick="switchChannel('game-review', 'Tempat curhat dan review jujur seputar game yang lagi ditamatin.')">game-review</div>
-            <div class="channel-item" onclick="switchChannel('now-playing', 'Koleksi audio track gokil dan playlist andalan pas lagi mabar.')">now-playing</div>
-            <div class="channel-item" onclick="switchChannel('setup-gaming', 'Update komponen PC, perintilan meja, dan keluhan manajemen kabel.')">setup-gaming</div>
+            <div class="channel-item active" onclick="switchChannel('game-review', 'Tempat curhat dan review jujur seputar game.')">game-review</div>
+            <div class="channel-item" onclick="switchChannel('now-playing', 'Koleksi playlist andalan pas lagi mabar.')">now-playing</div>
+            <div class="channel-item" onclick="switchChannel('setup-gaming', 'Update komponen PC dan perintilan meja.')">setup-gaming</div>
         </div>
 
         <div class="user-profile">
@@ -288,7 +357,7 @@
             </div>
             <div class="user-info">
                 <span class="username">GamerGokil</span>
-                <span class="custom-status">🎧 Listening to Playlist</span>
+                <span class="custom-status">🎧 Jamming on Spotify</span>
             </div>
         </div>
     </div>
@@ -303,7 +372,6 @@
     </div>
 
     <script>
-        // DATA BLOG KAMU (Edit bagian ini untuk menambah/mengganti isi chat sesukamu)
         const blogData = {
             'game-review': [
                 {
@@ -325,8 +393,8 @@
                     text: "Ini playlist andalan gw kalau lagi push rank atau sekadar nyantai di room Discord. Musiknya dapet banget energinya, langsung dengerin aja di bawah:",
                     likes: 35,
                     type: "spotify",
-                    // Menggunakan link playlist Spotify yang kamu berikan
-                    embedUrl: "https://open.spotify.com/playlist/38xujwdY9rSGTDm3eqzbgL?si=87dliiEATumsO86u6HEFOQ&pi=NWpQxsOgR5-pl" 
+                    // Menggunakan ID Playlist dari URL yang kamu berikan dengan format Embed resmi Spotify
+                    embedUrl: "https://open.spotify.com/embed/playlist/37i9dQZF1DX8WwG3v7926M" 
                 }
             ],
             'setup-gaming': [
@@ -350,9 +418,11 @@
             messages.forEach((msg, index) => {
                 let embedHTML = '';
                 if (msg.type === 'spotify') {
-                    // Rendering Iframe Spotify Player Resmi
+                    // Penyesuaian kode iframe resmi widget Spotify Player agar tidak mental ke aplikasi luar
                     embedHTML = `
-                        <iframe class="spotify-player" src="${msg.embedUrl}" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                        <div class="spotify-container">
+                            <iframe class="spotify-player" src="${msg.embedUrl}" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                        </div>
                     `;
                 }
 
@@ -375,7 +445,7 @@
                 container.innerHTML += msgHTML;
             });
 
-            container.scrollTop = 0; // Mulai dari atas saat ganti kategori
+            container.scrollTop = 0; 
         }
 
         function switchChannel(channelKey, description) {
@@ -386,7 +456,7 @@
 
             document.querySelectorAll('.channel-item').forEach(item => {
                 item.classList.remove('active');
-                if(item.innerText === channelKey) {
+                if(item.getAttribute('onclick').includes(`'${channelKey}'`)) {
                     item.classList.add('active');
                 }
             });
@@ -399,7 +469,6 @@
             document.getElementById(`like-count-${index}`).innerText = blogData[currentChannel][index].likes;
         }
 
-        // Muat pertama kali
         renderMessages();
     </script>
 </body>
