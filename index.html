@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breakdowns Blog</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         .bg-discord-dark { background-color: #202225; }
@@ -20,7 +18,7 @@
 </head>
 <body class="bg-discord-dark text-white font-sans flex flex-col md:flex-row h-screen w-screen overflow-hidden">
 
-    <!-- SIDEBAR LEFT: DAFTAR ROOM (Landscape / md:) -->
+    <!-- SIDEBAR LEFT: DAFTAR ROOM (Landscape) -->
     <div class="hidden md:flex w-60 bg-discord-sidebar flex-col justify-between flex-shrink-0 border-r border-zinc-800 h-full">
         <div>
             <div class="h-12 border-b border-zinc-800 flex items-center px-4 font-bold shadow-sm text-sm uppercase tracking-wider truncate">
@@ -40,7 +38,6 @@
                 </a>
             </div>
         </div>
-        <!-- Profile User Landscape -->
         <div class="p-2 bg-[#292b2f] flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <div class="relative">
@@ -77,21 +74,16 @@
 
     <!-- AREA UTAMA: Tempat Konten Utama (List Sosmed) -->
     <div class="flex-1 bg-discord-main flex flex-col min-w-0 h-[calc(100vh-84px)] md:h-full overflow-y-auto">
-        <!-- Top Title Bar (Desktop) -->
         <div class="hidden md:flex h-12 border-b border-zinc-800 items-center px-4 shadow-sm text-sm font-bold gap-2 flex-shrink-0">
             <span class="text-xl text-discord-muted">#</span> welcome-links
             <span class="text-xs font-normal text-discord-muted border-l border-zinc-700 pl-2">Social media directory for Breakdowns Blog</span>
         </div>
 
-        <!-- Konten Utama -->
-        <div class="p-4 space-y-5 pb-20">
-            <!-- Profil Header Utama -->
+        <div class="p-4 space-y-5 pb-24 md:pb-8">
             <div class="border-b border-zinc-700/50 pb-4 flex items-center gap-3">
                 <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" alt="Profile" class="w-12 h-12 rounded-full object-cover border border-zinc-600 shadow-lg">
                 <div>
-                    <div class="flex items-center gap-2">
-                        <span class="text-lg font-bold text-white"># welcome-links</span>
-                    </div>
+                    <span class="text-lg font-bold text-white"># welcome-links</span>
                     <p class="text-xs text-discord-muted">| Tempat nongkrong & link sosmed resmi hafitz.</p>
                 </div>
             </div>
