@@ -6,7 +6,7 @@
     <title>Breakdowns Blog</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Versi Terbaru -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         .bg-discord-dark { background-color: #202225; }
@@ -18,7 +18,7 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-discord-dark text-white font-sans flex flex-col md:flex-row min-h-screen md:h-screen md:overflow-hidden">
+<body class="bg-discord-dark text-white font-sans flex flex-col md:flex-row h-screen w-screen overflow-hidden">
 
     <!-- SIDEBAR LEFT: DAFTAR ROOM (Landscape / md:) -->
     <div class="hidden md:flex w-60 bg-discord-sidebar flex-col justify-between flex-shrink-0 border-r border-zinc-800 h-full">
@@ -32,7 +32,7 @@
                     <span class="text-xl text-discord-muted">#</span> welcome-links
                 </a>
                 <p class="text-xs font-semibold text-discord-muted px-2 uppercase tracking-wider mt-4">Blog Categories</p>
-                <a href="blog.html" class="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-zinc-700/50 text-discord-muted hover:text-white text-sm transition-colors">
+                <a href="gaming.html" class="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-zinc-700/50 text-discord-muted hover:text-white text-sm transition-colors">
                     <span class="text-xl">#</span> gaming
                 </a>
                 <a href="#" class="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-zinc-700/50 text-discord-muted hover:text-white text-sm transition-colors">
@@ -56,7 +56,7 @@
     </div>
 
     <!-- HEADER & KATEGORI MOBILE -->
-    <div class="block md:hidden bg-discord-dark p-3 border-b border-zinc-800 w-full flex-shrink-0 select-none sticky top-0 z-50">
+    <div class="block md:hidden bg-discord-dark p-3 border-b border-zinc-800 w-full flex-shrink-0 select-none">
         <div class="flex items-center gap-2 mb-2">
             <span class="text-sm font-bold tracking-wide">🎮 Breakdowns Room</span>
         </div>
@@ -65,7 +65,7 @@
                 <a href="./" class="bg-discord-blurple text-white text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap block">
                     # welcome-links
                 </a>
-                <a href="blog.html" class="bg-[#2f3136] hover:bg-zinc-700 text-discord-muted hover:text-white text-xs font-medium px-3 py-1.5 rounded-md transition-colors whitespace-nowrap block">
+                <a href="gaming.html" class="bg-[#2f3136] hover:bg-zinc-700 text-discord-muted hover:text-white text-xs font-medium px-3 py-1.5 rounded-md transition-colors whitespace-nowrap block">
                     # gaming
                 </a>
                 <a href="#" class="bg-[#2f3136] hover:bg-zinc-700 text-discord-muted hover:text-white text-xs font-medium px-3 py-1.5 rounded-md transition-colors whitespace-nowrap block">
@@ -75,8 +75,8 @@
         </div>
     </div>
 
-    <!-- AREA UTAMA: Tempat Konten Utama (FIXED SCROLL LANDSCAPE & PORTRAIT) -->
-    <div class="flex-1 bg-discord-main flex flex-col min-w-0 h-full md:overflow-y-auto">
+    <!-- AREA UTAMA: Tempat Konten Utama (List Sosmed) -->
+    <div class="flex-1 bg-discord-main flex flex-col min-w-0 h-[calc(100vh-84px)] md:h-full overflow-y-auto">
         <!-- Top Title Bar (Desktop) -->
         <div class="hidden md:flex h-12 border-b border-zinc-800 items-center px-4 shadow-sm text-sm font-bold gap-2 flex-shrink-0">
             <span class="text-xl text-discord-muted">#</span> welcome-links
@@ -84,7 +84,7 @@
         </div>
 
         <!-- Konten Utama -->
-        <div class="p-4 space-y-5 pb-24 md:pb-8">
+        <div class="p-4 space-y-5 pb-20">
             <!-- Profil Header Utama -->
             <div class="border-b border-zinc-700/50 pb-4 flex items-center gap-3">
                 <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" alt="Profile" class="w-12 h-12 rounded-full object-cover border border-zinc-600 shadow-lg">
@@ -209,5 +209,5 @@
         </div>
     </div>
 </body>
-    </html>
-    
+                        </html>
+                        
