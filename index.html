@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBlog - Musik & Gaming</title>
+    <style>
+        /* RESET & BASE STYLES */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f1115;
+            color: #e3e6ed;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* 1. SIDEBAR (Kiri) */
+        .sidebar {
+            width: 260px;
+            background-color: #1e222b;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #2a2f3d;
+        }
+
+        .server-header {
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-bottom: 1px solid #2a2f3d;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+            color: #fff;
+        }
+
+        .channel-list {
+            flex: 1;
+            padding: 15px 8px;
+            overflow-y: auto;
+        }
+
+        .channel-category {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #8a94a6;
+            font-weight: bold;
+            margin-bottom: 8px;
+            padding-left: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .channel-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            color: #9da5b4;
+            text-decoration: none;
+            margin-bottom: 4px;
+            font-size: 14px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .channel-item:hover, .channel-item.active {
+            background-color: #2c3241;
+            color: #fff;
+        }
+
+        .channel-item::before {
+            content: "#";
+            margin-right: 8px;
+            font-weight: bold;
+            color: #656e7e;
+        }
+
+        .channel-item.active::before {
+            color: #4f46e5;
+        }
+
+        /* User Profil di bagian bawah Sidebar (Rich Presence) */
+        .user-profile {
+            padding: 12px;
+            background-color: #171a21;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-top: 1px solid #2a2f3d;
+        }
+
+        .avatar-container {
+            position: relative;
+        }
+
+        .avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 16px;
+        }
+
+        .status-dot {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 12px;
+            height: 12px;
+            background-color: #10b981; /* Hijau Online */
+            border: 2px solid #171a21;
+            border-radius: 50%;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .username {
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .custom-status {
+            font-size: 11px;
+            color: #10b981;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 170px;
+        }
+
+        /* 2. CHAT PANEL (Kanan) */
+        .chat-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #13161c;
+        }
+
+        .chat-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #2a2f3d;
+            background-color: #13161c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .chat-header h2 {
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .chat-header p {
+            font-size: 13px;
+            color: #8a94a6;
+        }
+
+        .message-list {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .message-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .msg-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #4f46e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .msg-content-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 100%;
+        }
+
+        .msg-header {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            }
+
+        .msg-author {
+            font-weight: 600;
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .msg-time {
+            font-size: 11px;
+            color: #656e7e;
+        }
+
+        .msg-text {
+            color: #d1d5db;
+            font-size: 14.5px;
+            line-height: 1.5;
+            max-width: 800px;
+        }
+
+        /* Embed Card Style (Link preview ala Discord) */
+        .msg-embed {
+            background-color: #1e222b;
+            border-left: 4px solid #10b981;
+            border-radius: 4px;
+            padding: 12px;
+            margin-top: 8px;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .embed-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #10b981;
+            text-decoration: none;
+        }
+
+        .embed-title:hover {
+            text-decoration: underline;
+        }
+
+        .embed-desc {
+            font-size: 13px;
+            color: #9da5b4;
+        }
+
+        /* Emoji Reactions */
+        .reactions {
+            display: flex;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .reaction-badge {
+            background-color: #1e222b;
+            border: 1px solid #2a2f3d;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: #9da5b4;
+            transition: all 0.2s;
+        }
+
+        .reaction-badge:hover {
+            background-color: #2c3241;
+            border-color: #4f46e5;
+            color: #fff;
+        }
+
+        /* FAKE INPUT (Karena pembaca cuma bisa lihat) */
+        .chat-input-area {
+            padding: 0 20px 24px 20px;
+            background-color: #13161c;
+        }
+
+        .fake-input {
+            width: 100%;
+            background-color: #222733;
+            border-radius: 8px;
+            padding: 14px 20px;
+            color: #656e7e;
+            font-size: 14px;
+            border: none;
+            outline: none;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="server-header">🎮 Musik & Gaming Log</div>
+        
+        <div class="channel-list">
+            <div class="channel-category">Kategori Blog</div>
+            <a href="#" class="channel-item active">game-review</a>
+            <a href="#" class="channel-item">now-playing</a>
+            <a href="#" class="channel-item">setup-gaming</a>
+            <a href="#" class="channel-item">random-thoughts</a>
+        </div>
+
+        <div class="user-profile">
+            <div class="avatar-container">
+                <div class="avatar">GG</div>
+                <div class="status-dot"></div>
+            </div>
+            <div class="user-info">
+                <span class="username">GamerGokil</span>
+                <span class="custom-status">🎧 Spotify: Bury the Light</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-area">
+        <div class="chat-header">
+            <h2># game-review</h2>
+            <p>| Tempat curhat dan review jujur seputar game yang lagi ditamatin.</p>
+        </div>
+
+        <div class="message-list">
+            
+            <div class="message-group">
+                <div class="msg-avatar">GG</div>
+                <div class="msg-content-wrapper">
+                    <div class="msg-header">
+                        <span class="msg-author">GamerGokil</span>
+                        <span class="msg-time">Hari ini pukul 14:20</span>
+                    </div>
+                    <div class="msg-text">
+                        Baru main game Cyberpunk selama 3 jam nonstop hari ini. Sumpah, grafik 10/10 setelah update terbaru, tapi mekanik combat-nya masih agak kaku dikit di awal. Kalau lu suka tipe game eksplorasi kota distopia distrik malam, wajib angkat sih pas lagi diskon!
+                    </div>
+                    <div class="reactions">
+                        <button class="reaction-badge">🔥 12</button>
+                        <button class="reaction-badge">👍 8</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="message-group">
+                <div class="msg-avatar">GG</div>
+                <div class="msg-content-wrapper">
+                    <div class="msg-header">
+                        <span class="msg-author">GamerGokil</span>
+                        <span class="msg-time">Kemarin pukul 21:05</span>
+                    </div>
+                    <div class="msg-text">
+                        Btw, soundtrack (OST) pas boss fight di game ini gokil parah! Musiknya bener-bener nge-carry seluruh gameplay biar makin berasa tegang. Lu harus denger track yang satu ini:
+                    </div>
+                    
+                    <div class="msg-embed">
+                        <a href="https://spotify.com" target="_blank" class="embed-title">Cyberpunk OST - Rebel Path (Violin Version)</a>
+                        <div class="embed-desc">Mendengarkan via Spotify. Aransemen string dicampur synth modern yang bikin adrenalin naik parah pas grinding.</div>
+                    </div>
+                    
+                    <div class="reactions">
+                        <button class="reaction-badge">🎵 15</button>
+                        <button class="reaction-badge">❤️ 9</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="chat-input-area">
+            <div class="fake-input">Hanya pemilik blog yang dapat mengirim pesan di sini...</div>
+        </div>
+    </div>
+
+</body>
+              </html>
+              
