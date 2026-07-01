@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatBlog - Musik & Gaming</title>
+    <title>ChatBlog - Breakdowns</title>
     <style>
         * {
             box-sizing: border-box;
@@ -236,7 +236,7 @@
             word-break: break-word;
         }
 
-        /* PERBAIKAN WIDGET SPOTIFY EMBED */
+        /* WIDGET SPOTIFY EMBED */
         .spotify-container {
             margin-top: 8px;
             max-width: 100%;
@@ -283,7 +283,7 @@
         /* --- 📱 RESPONSIVE LAYOUT UNTUK HP (MOBILE) --- */
         @media (max-width: 768px) {
             body {
-                flex-direction: column; /* Mengubah susunan jadi atas-bawah, bukan kiri-kanan */
+                flex-direction: column;
             }
 
             .sidebar {
@@ -293,15 +293,21 @@
                 border-bottom: 1px solid #2a2f3d;
             }
 
-            .server-header, .user-profile {
-                display: none; /* Menyembunyikan elemen yang gak begitu penting di layar kecil */
+            .server-header {
+                display: none;
+            }
+
+            .user-profile {
+                border-top: 1px solid #2a2f3d;
+                border-bottom: 1px solid #2a2f3d;
+                padding: 10px 15px;
             }
 
             .channel-list {
                 display: flex;
-                padding: 10px;
+                padding: 10px 10px 5px 10px;
                 gap: 8px;
-                overflow-x: auto; /* Menu kategori sekarang bisa digeser ke samping di HP */
+                overflow-x: auto;
                 white-space: nowrap;
             }
 
@@ -333,13 +339,14 @@
             }
 
             .spotify-player {
-                height: 152px; /* Di HP ukuran pemutar lagu dibuat lebih ringkas (Compact Player) */
+                height: 380px; /* Dipertahankan agar daftar lagumu di HP tetap terlihat penuh */
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- SIDEBAR LEFT -->
     <div class="sidebar">
         <div class="server-header">🎮 Musik & Gaming Log</div>
         
@@ -350,27 +357,31 @@
             <div class="channel-item" onclick="switchChannel('setup-gaming', 'Update komponen PC dan perintilan meja.')">setup-gaming</div>
         </div>
 
+        <!-- PROFILE AREA (NAMA UPDATE: BREAKDOWNS) -->
         <div class="user-profile">
             <div class="avatar-container">
-                <div class="avatar">GG</div>
+                <div class="avatar">BD</div>
                 <div class="status-dot"></div>
             </div>
             <div class="user-info">
-                <span class="username">GamerGokil</span>
+                <span class="username">Breakdowns</span>
                 <span class="custom-status">🎧 Jamming on Spotify</span>
             </div>
         </div>
     </div>
 
+    <!-- CHAT WINDOW RIGHT -->
     <div class="chat-area">
         <div class="chat-header">
             <h2 id="current-channel-name"># game-review</h2>
             <p id="current-channel-desc">| Tempat curhat dan review jujur seputar game yang lagi ditamatin.</p>
         </div>
 
+        <!-- CONTAINER PESAN -->
         <div class="message-list" id="message-container"></div>
     </div>
 
+    <!-- --- JAVASCRIPT ENGINE INJEKSI --- -->
     <script>
         const blogData = {
             'game-review': [
@@ -393,8 +404,8 @@
                     text: "Ini playlist andalan gw kalau lagi push rank atau sekadar nyantai di room Discord. Musiknya dapet banget energinya, langsung dengerin aja di bawah:",
                     likes: 35,
                     type: "spotify",
-                    // Menggunakan ID Playlist dari URL yang kamu berikan dengan format Embed resmi Spotify
-                    embedUrl: "https://open.spotify.com/embed/playlist/37i9dQZF1DX8WwG3v7926M" 
+                    // LINK EMBED ASLI DARI PLAYLIST KAMU (SUDAH DIPERBAIKI):
+                    embedUrl: "https://open.spotify.com/embed/playlist/38xujwdY9rSGTDm3eqzbgL" 
                 }
             ],
             'setup-gaming': [
@@ -418,7 +429,6 @@
             messages.forEach((msg, index) => {
                 let embedHTML = '';
                 if (msg.type === 'spotify') {
-                    // Penyesuaian kode iframe resmi widget Spotify Player agar tidak mental ke aplikasi luar
                     embedHTML = `
                         <div class="spotify-container">
                             <iframe class="spotify-player" src="${msg.embedUrl}" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
@@ -428,10 +438,10 @@
 
                 const msgHTML = `
                     <div class="message-group">
-                        <div class="msg-avatar">GG</div>
+                        <div class="msg-avatar">BD</div>
                         <div class="msg-content-wrapper">
                             <div class="msg-header">
-                                <span class="msg-author">GamerGokil</span>
+                                <span class="msg-author">Breakdowns</span>
                                 <span class="msg-time">${msg.time}</span>
                             </div>
                             <div class="msg-text">${msg.text}</div>
@@ -469,8 +479,9 @@
             document.getElementById(`like-count-${index}`).innerText = blogData[currentChannel][index].likes;
         }
 
+        // Jalankan render muatan pertama kali saat aplikasi dibuka
         renderMessages();
     </script>
 </body>
-    </html>
-    
+                </html>
+                
