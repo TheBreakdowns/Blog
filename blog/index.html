@@ -26,11 +26,12 @@
             </div>
             <div class="p-2 space-y-1">
                 <p class="text-xs font-semibold text-discord-muted px-2 uppercase tracking-wider">Info & Links</p>
-                <a href="./" class="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-zinc-700/50 text-discord-muted hover:text-white text-sm transition-colors">
+                <!-- KELUAR FOLDER KEMBALI KE ROOT (../) -->
+                <a href="../" class="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-zinc-700/50 text-discord-muted hover:text-white text-sm transition-colors">
                     <span class="text-xl">#</span> welcome-links
                 </a>
                 <p class="text-xs font-semibold text-discord-muted px-2 uppercase tracking-wider mt-4">Blog Categories</p>
-                <a href="blog.html" class="flex items-center gap-2 px-2 py-1.5 rounded bg-zinc-700 text-white text-sm font-medium">
+                <a href="./" class="flex items-center gap-2 px-2 py-1.5 rounded bg-zinc-700 text-white text-sm font-medium">
                     <span class="text-xl text-discord-muted">#</span> gaming
                 </a>
                 <a href="#" class="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-zinc-700/50 text-discord-muted hover:text-white text-sm transition-colors">
@@ -59,10 +60,10 @@
         </div>
         <div class="w-full overflow-x-scroll no-scrollbar touch-pan-x">
             <div class="flex flex-nowrap gap-2 pb-1 w-max">
-                <a href="./" class="bg-[#2f3136] hover:bg-zinc-700 text-discord-muted hover:text-white text-xs font-medium px-3 py-1.5 rounded-md transition-colors whitespace-nowrap block">
+                <a href="../" class="bg-[#2f3136] hover:bg-zinc-700 text-discord-muted hover:text-white text-xs font-medium px-3 py-1.5 rounded-md transition-colors whitespace-nowrap block">
                     # welcome-links
                 </a>
-                <a href="blog.html" class="bg-discord-blurple text-white text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap block">
+                <a href="./" class="bg-discord-blurple text-white text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap block">
                     # gaming
                 </a>
                 <a href="#" class="bg-[#2f3136] hover:bg-zinc-700 text-discord-muted hover:text-white text-xs font-medium px-3 py-1.5 rounded-md transition-colors whitespace-nowrap block">
@@ -79,7 +80,9 @@
             <span class="text-xs font-normal text-discord-muted border-l border-zinc-700 pl-2">Tempat review jujur seputar game.</span>
         </div>
 
+        <!-- FIX LANDSCAPE SCROLL: Menggunakan pb-32 agar bisa di-scroll bebas sampai bawah tanpa mentok -->
         <div class="p-4 space-y-6 pb-32 md:pb-12 flex-1">
+            
             <div class="border-b border-zinc-700/50 pb-4">
                 <div class="w-12 h-12 bg-zinc-700 rounded-full flex items-center justify-center mb-2">
                     <i class="fa-solid fa-hashtag text-2xl text-white"></i>
@@ -134,4 +137,5 @@
         </div>
     </div>
 </body>
-</html>
+    </html>
+    
