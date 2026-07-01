@@ -18,7 +18,8 @@
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-discord-dark text-white font-sans flex flex-col md:flex-row h-screen overflow-hidden">
+<!-- Perbaikan Utama: Menggunakan h-auto overflow-y-auto secara default di mobile -->
+<body class="bg-discord-dark text-white font-sans flex flex-col md:flex-row h-auto md:h-screen overflow-y-auto md:overflow-hidden">
 
     <!-- SIDEBAR LEFT: DAFTAR ROOM (Landscape / md:) -->
     <div class="hidden md:flex w-60 bg-discord-sidebar flex-col justify-between flex-shrink-0 border-r border-zinc-800 h-full">
@@ -56,7 +57,7 @@
     </div>
 
     <!-- HEADER & KATEGORI MOBILE -->
-    <div class="block md:hidden bg-discord-dark p-3 border-b border-zinc-800 w-full flex-shrink-0 select-none">
+    <div class="block md:hidden bg-discord-dark p-3 border-b border-zinc-800 w-full flex-shrink-0 select-none sticky top-0 z-50">
         <div class="flex items-center gap-2 mb-2">
             <span class="text-sm font-bold tracking-wide">🎮 Breakdowns Room</span>
         </div>
@@ -76,15 +77,15 @@
     </div>
 
     <!-- AREA UTAMA: Tempat Konten Utama (List Sosmed) -->
-    <div class="flex-1 bg-discord-main flex flex-col min-w-0 h-full overflow-hidden">
+    <div class="flex-1 bg-discord-main flex flex-col min-w-0 h-full md:overflow-hidden">
         <!-- Top Title Bar (Desktop) -->
         <div class="hidden md:flex h-12 border-b border-zinc-800 items-center px-4 shadow-sm text-sm font-bold gap-2 flex-shrink-0">
             <span class="text-xl text-discord-muted">#</span> welcome-links
             <span class="text-xs font-normal text-discord-muted border-l border-zinc-700 pl-2">Social media directory for Breakdowns Blog</span>
         </div>
 
-        <!-- Konten Utama (Scrollable Vertikal dengan Jarak Bawah pb-16) -->
-        <div class="flex-1 overflow-y-auto p-4 space-y-5 pb-16">
+        <!-- Konten Utama (Scrollable dengan padding bawah ekstra) -->
+        <div class="flex-1 overflow-y-visible md:overflow-y-auto p-4 space-y-5 pb-20 md:pb-6">
             <!-- Profil Header Utama -->
             <div class="border-b border-zinc-700/50 pb-4 flex items-center gap-3">
                 <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" alt="Profile" class="w-12 h-12 rounded-full object-cover border border-zinc-600 shadow-lg">
@@ -209,4 +210,5 @@
         </div>
     </div>
 </body>
-</html>
+                                                                                                    </html>
+                                                                                                    
