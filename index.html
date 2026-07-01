@@ -14,6 +14,8 @@
         .bg-discord-main { background-color: #36393f; }
         .bg-discord-blurple { background-color: #5865F2; }
         .text-discord-muted { color: #b9bbbe; }
+        
+        /* Memaksa scrollbar hilang tapi fungsi geser (swipe) tetap aktif di HP */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
@@ -55,27 +57,27 @@
         </div>
     </div>
 
-    <!-- TOP BAR MOBILE: Hanya muncul saat Layar Berdiri (Portrait) -->
-    <div class="bg-discord-dark md:hidden flex flex-col p-3 border-b border-zinc-800 gap-3 flex-shrink-0 w-full">
+    <!-- TOP BAR MOBILE: Sekarang kategori DIJAMIN BISA DIGESER (Swipeable) -->
+    <div class="bg-discord-dark md:hidden flex flex-col p-3 border-b border-zinc-800 gap-2 flex-shrink-0 w-full overflow-hidden">
         <div class="flex items-center gap-2">
             <span class="text-sm font-bold tracking-wide">🎮 Breakdowns Room</span>
         </div>
         
-        <!-- List Kategori Horizontal -->
-        <div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar w-full">
-            <a href="#" class="bg-discord-blurple text-white text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap">
+        <!-- Wadah List Kategori Horizontal dengan flex-nowrap agar tidak turun ke bawah -->
+        <div class="flex flex-nowrap gap-2 overflow-x-auto pb-1 no-scrollbar w-full touch-pan-x">
+            <a href="#" class="bg-discord-blurple text-white text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap flex-shrink-0">
                 # welcome-links
             </a>
-            <a href="#" class="bg-[#2f3136] hover:bg-zinc-700 text-discord-muted hover:text-white text-xs font-medium px-3 py-1.5 rounded-md transition-colors whitespace-nowrap">
+            <a href="#" class="bg-[#2f3136] hover:bg-zinc-700 text-discord-muted hover:text-white text-xs font-medium px-3 py-1.5 rounded-md transition-colors whitespace-nowrap flex-shrink-0">
                 # tech-reviews
             </a>
-            <a href="#" class="bg-[#2f3136] hover:bg-zinc-700 text-discord-muted hover:text-white text-xs font-medium px-3 py-1.5 rounded-md transition-colors whitespace-nowrap">
+            <a href="#" class="bg-[#2f3136] hover:bg-zinc-700 text-discord-muted hover:text-white text-xs font-medium px-3 py-1.5 rounded-md transition-colors whitespace-nowrap flex-shrink-0">
                 # daily-thoughts
             </a>
         </div>
     </div>
 
-    <!-- AREA UTAMA: Konten List Sosmed (Responsif & Bisa diklik lancar) -->
+    <!-- AREA UTAMA: Konten List Sosmed -->
     <div class="flex-1 bg-discord-main flex flex-col min-w-0 w-full relative z-10">
         <!-- Top Title Bar (Hanya muncul di Desktop) -->
         <div class="hidden md:flex h-12 border-b border-zinc-800 items-center px-4 shadow-sm text-sm font-bold gap-2 flex-shrink-0">
@@ -83,7 +85,7 @@
             <span class="text-xs font-normal text-discord-muted border-l border-zinc-700 pl-2">Social media directory for Breakdowns Blog</span>
         </div>
 
-        <!-- Konten Utama (Scrollable) -->
+        <!-- Konten Utama (Scrollable Vertikal) -->
         <div class="flex-1 overflow-y-auto p-4 space-y-5 w-full">
             
             <!-- Welcome Info Banner -->
