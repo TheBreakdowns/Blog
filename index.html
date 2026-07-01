@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive ChatBlog - Musik & Gaming</title>
+    <title>ChatBlog - Musik & Gaming</title>
     <style>
         * {
             box-sizing: border-box;
@@ -175,9 +175,9 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            padding-bottom: 40px; /* Jarak aman di bawah */
         }
 
-        /* Efek animasi memudar saat chat baru masuk */
         .message-group {
             display: flex;
             gap: 15px;
@@ -233,11 +233,12 @@
             max-width: 800px;
         }
 
-        .spotify-embed {
-            margin-top: 8px;
+        .spotify-player {
+            margin-top: 10px;
             border-radius: 12px;
             overflow: hidden;
-            max-width: 400px;
+            max-width: 450px;
+            border: none;
         }
 
         .reactions {
@@ -266,50 +267,6 @@
             border-color: #4f46e5;
             color: #fff;
         }
-
-        /* --- INPUT BAR AREA --- */
-        .chat-input-area {
-            padding: 0 20px 24px 20px;
-            background-color: #13161c;
-        }
-
-        .input-wrapper {
-            display: flex;
-            background-color: #222733;
-            border-radius: 8px;
-            padding: 6px 12px;
-            align-items: center;
-        }
-
-        .chat-input {
-            flex: 1;
-            background: none;
-            border: none;
-            outline: none;
-            padding: 10px;
-            color: #e3e6ed;
-            font-size: 14px;
-        }
-
-        .chat-input::placeholder {
-            color: #586275;
-        }
-
-        .send-btn {
-            background-color: #4f46e5;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            font-weight: bold;
-            transition: background 0.2s;
-        }
-
-        .send-btn:hover {
-            background-color: #4338ca;
-        }
     </style>
 </head>
 <body>
@@ -331,7 +288,7 @@
             </div>
             <div class="user-info">
                 <span class="username">GamerGokil</span>
-                <span class="custom-status">🎧 Listening to Spotify</span>
+                <span class="custom-status">🎧 Listening to Playlist</span>
             </div>
         </div>
     </div>
@@ -343,17 +300,10 @@
         </div>
 
         <div class="message-list" id="message-container"></div>
-
-        <div class="chat-input-area">
-            <div class="input-wrapper">
-                <input type="text" id="blog-input" class="chat-input" placeholder="Ketik status blog lalu tekan Enter atau kirim...">
-                <button class="send-btn" onclick="addNewMessage()">Kirim</button>
-            </div>
-        </div>
     </div>
 
     <script>
-        // Simulasi Database Penyimpanan Data Artikel Blog
+        // DATA BLOG KAMU (Edit bagian ini untuk menambah/mengganti isi chat sesukamu)
         const blogData = {
             'game-review': [
                 {
@@ -361,15 +311,22 @@
                     text: "Baru main game Cyberpunk selama 3 jam nonstop hari ini. Sumpah, grafik 10/10 setelah update terbaru, tapi mekanik combat-nya masih agak kaku dikit di awal. Kalau lu suka tipe game eksplorasi kota distopia distrik malam, wajib angkat sih pas lagi diskon!",
                     likes: 12,
                     type: "text"
+                },
+                {
+                    time: "Kemarin pukul 18:00",
+                    text: "Lagi nyoba grinding level di game sebelah, baru sadar boss-nya susah banget kalau gak bawa item healing yang pas. Ada saran build item yang oke buat pemula?",
+                    likes: 7,
+                    type: "text"
                 }
             ],
             'now-playing': [
                 {
-                    time: "Kemarin pukul 21:05",
-                    text: "Soundtrack (OST) pas boss fight di game Devil May Cry 5 ini bener-bener gokil parah! Bikin adrenalin naik pas lagi grinding. Cobain dengerin:",
-                    likes: 24,
+                    time: "2 hari yang lalu pukul 21:05",
+                    text: "Ini playlist andalan gw kalau lagi push rank atau sekadar nyantai di room Discord. Musiknya dapet banget energinya, langsung dengerin aja di bawah:",
+                    likes: 35,
                     type: "spotify",
-                    embedUrl: "https://open.spotify.com/embed/track/1bWhw7SpZ6Un77v6gpw76G" // Link embed widget Spotify asli
+                    // Menggunakan link playlist Spotify yang kamu berikan
+                    embedUrl: "https://open.spotify.com/playlist/38xujwdY9rSGTDm3eqzbgL?si=87dliiEATumsO86u6HEFOQ&pi=NWpQxsOgR5-pl" 
                 }
             ],
             'setup-gaming': [
@@ -384,20 +341,18 @@
 
         let currentChannel = 'game-review';
 
-        // Fungsi utama untuk menggambar pesan pada layar pembaca
         function renderMessages() {
             const container = document.getElementById('message-container');
-            container.innerHTML = ''; // bersihkan kontainer chat lama
+            container.innerHTML = ''; 
 
             const messages = blogData[currentChannel] || [];
 
             messages.forEach((msg, index) => {
                 let embedHTML = '';
                 if (msg.type === 'spotify') {
+                    // Rendering Iframe Spotify Player Resmi
                     embedHTML = `
-                        <div class="spotify-embed">
-                            <iframe src="${msg.embedUrl}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                        </div>
+                        <iframe class="spotify-player" src="${msg.embedUrl}" width="100%" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                     `;
                 }
 
@@ -420,18 +375,15 @@
                 container.innerHTML += msgHTML;
             });
 
-            // Otomatis scroll layar ke baris terbawah
-            container.scrollTop = container.scrollHeight;
+            container.scrollTop = 0; // Mulai dari atas saat ganti kategori
         }
 
-        // Fungsi mengganti channel saat kategori diklik
         function switchChannel(channelKey, description) {
             currentChannel = channelKey;
             
             document.getElementById('current-channel-name').innerText = `# ${channelKey}`;
             document.getElementById('current-channel-desc').innerText = `| ${description}`;
 
-            // Reset indikator aktif di bagian sidebar menu
             document.querySelectorAll('.channel-item').forEach(item => {
                 item.classList.remove('active');
                 if(item.innerText === channelKey) {
@@ -442,37 +394,12 @@
             renderMessages();
         }
 
-        // Fungsi untuk menambahkan pesan baru
-        function addNewMessage() {
-            const input = document.getElementById('blog-input');
-            const text = input.value.trim();
-            if (!text) return; // batalkan jika kolom input kosong
-
-            blogData[currentChannel].push({
-                time: "Baru saja",
-                text: text,
-                likes: 0,
-                type: "text"
-            });
-
-            input.value = ''; // bersihkan bar input teks
-            renderMessages(); // muat ulang konten chat
-        }
-
-        // Listener agar bisa kirim chat pakai enter di keyboard
-        document.getElementById('blog-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                addNewMessage();
-            }
-        });
-
-        // Fungsi menambah nilai tombol reaksi suka
         function addLike(index) {
             blogData[currentChannel][index].likes += 1;
             document.getElementById(`like-count-${index}`).innerText = blogData[currentChannel][index].likes;
         }
 
-        // Jalankan render muatan pertama kali saat aplikasi dibuka
+        // Muat pertama kali
         renderMessages();
     </script>
 </body>
