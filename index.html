@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatBlog - Musik & Gaming</title>
+    <title>Interactive ChatBlog - Musik & Gaming</title>
     <style>
-        /* RESET & BASE STYLES */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -21,7 +20,7 @@
             overflow: hidden;
         }
 
-        /* 1. SIDEBAR (Kiri) */
+        /* --- SIDEBAR PANEL (KIRI) --- */
         .sidebar {
             width: 260px;
             background-color: #1e222b;
@@ -84,7 +83,6 @@
             color: #4f46e5;
         }
 
-        /* User Profil di bagian bawah Sidebar (Rich Presence) */
         .user-profile {
             padding: 12px;
             background-color: #171a21;
@@ -117,7 +115,7 @@
             right: 0;
             width: 12px;
             height: 12px;
-            background-color: #10b981; /* Hijau Online */
+            background-color: #10b981;
             border: 2px solid #171a21;
             border-radius: 50%;
         }
@@ -142,7 +140,7 @@
             max-width: 170px;
         }
 
-        /* 2. CHAT PANEL (Kanan) */
+        /* --- MAIN CHAT AREA (KANAN) --- */
         .chat-area {
             flex: 1;
             display: flex;
@@ -179,9 +177,16 @@
             gap: 20px;
         }
 
+        /* Efek animasi memudar saat chat baru masuk */
         .message-group {
             display: flex;
             gap: 15px;
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .msg-avatar {
@@ -208,7 +213,7 @@
             display: flex;
             align-items: baseline;
             gap: 8px;
-            }
+        }
 
         .msg-author {
             font-weight: 600;
@@ -228,36 +233,13 @@
             max-width: 800px;
         }
 
-        /* Embed Card Style (Link preview ala Discord) */
-        .msg-embed {
-            background-color: #1e222b;
-            border-left: 4px solid #10b981;
-            border-radius: 4px;
-            padding: 12px;
+        .spotify-embed {
             margin-top: 8px;
-            max-width: 500px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
+            border-radius: 12px;
+            overflow: hidden;
+            max-width: 400px;
         }
 
-        .embed-title {
-            font-size: 14px;
-            font-weight: bold;
-            color: #10b981;
-            text-decoration: none;
-        }
-
-        .embed-title:hover {
-            text-decoration: underline;
-        }
-
-        .embed-desc {
-            font-size: 13px;
-            color: #9da5b4;
-        }
-
-        /* Emoji Reactions */
         .reactions {
             display: flex;
             gap: 6px;
@@ -276,6 +258,7 @@
             gap: 4px;
             color: #9da5b4;
             transition: all 0.2s;
+            user-select: none;
         }
 
         .reaction-badge:hover {
@@ -284,22 +267,48 @@
             color: #fff;
         }
 
-        /* FAKE INPUT (Karena pembaca cuma bisa lihat) */
+        /* --- INPUT BAR AREA --- */
         .chat-input-area {
             padding: 0 20px 24px 20px;
             background-color: #13161c;
         }
 
-        .fake-input {
-            width: 100%;
+        .input-wrapper {
+            display: flex;
             background-color: #222733;
             border-radius: 8px;
-            padding: 14px 20px;
-            color: #656e7e;
-            font-size: 14px;
+            padding: 6px 12px;
+            align-items: center;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: none;
             border: none;
             outline: none;
-            cursor: not-allowed;
+            padding: 10px;
+            color: #e3e6ed;
+            font-size: 14px;
+        }
+
+        .chat-input::placeholder {
+            color: #586275;
+        }
+
+        .send-btn {
+            background-color: #4f46e5;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .send-btn:hover {
+            background-color: #4338ca;
         }
     </style>
 </head>
@@ -310,10 +319,9 @@
         
         <div class="channel-list">
             <div class="channel-category">Kategori Blog</div>
-            <a href="#" class="channel-item active">game-review</a>
-            <a href="#" class="channel-item">now-playing</a>
-            <a href="#" class="channel-item">setup-gaming</a>
-            <a href="#" class="channel-item">random-thoughts</a>
+            <div class="channel-item active" onclick="switchChannel('game-review', 'Tempat curhat dan review jujur seputar game yang lagi ditamatin.')">game-review</div>
+            <div class="channel-item" onclick="switchChannel('now-playing', 'Koleksi audio track gokil dan playlist andalan pas lagi mabar.')">now-playing</div>
+            <div class="channel-item" onclick="switchChannel('setup-gaming', 'Update komponen PC, perintilan meja, dan keluhan manajemen kabel.')">setup-gaming</div>
         </div>
 
         <div class="user-profile">
@@ -323,66 +331,150 @@
             </div>
             <div class="user-info">
                 <span class="username">GamerGokil</span>
-                <span class="custom-status">🎧 Spotify: Bury the Light</span>
+                <span class="custom-status">🎧 Listening to Spotify</span>
             </div>
         </div>
     </div>
 
     <div class="chat-area">
         <div class="chat-header">
-            <h2># game-review</h2>
-            <p>| Tempat curhat dan review jujur seputar game yang lagi ditamatin.</p>
+            <h2 id="current-channel-name"># game-review</h2>
+            <p id="current-channel-desc">| Tempat curhat dan review jujur seputar game yang lagi ditamatin.</p>
         </div>
 
-        <div class="message-list">
-            
-            <div class="message-group">
-                <div class="msg-avatar">GG</div>
-                <div class="msg-content-wrapper">
-                    <div class="msg-header">
-                        <span class="msg-author">GamerGokil</span>
-                        <span class="msg-time">Hari ini pukul 14:20</span>
-                    </div>
-                    <div class="msg-text">
-                        Baru main game Cyberpunk selama 3 jam nonstop hari ini. Sumpah, grafik 10/10 setelah update terbaru, tapi mekanik combat-nya masih agak kaku dikit di awal. Kalau lu suka tipe game eksplorasi kota distopia distrik malam, wajib angkat sih pas lagi diskon!
-                    </div>
-                    <div class="reactions">
-                        <button class="reaction-badge">🔥 12</button>
-                        <button class="reaction-badge">👍 8</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="message-group">
-                <div class="msg-avatar">GG</div>
-                <div class="msg-content-wrapper">
-                    <div class="msg-header">
-                        <span class="msg-author">GamerGokil</span>
-                        <span class="msg-time">Kemarin pukul 21:05</span>
-                    </div>
-                    <div class="msg-text">
-                        Btw, soundtrack (OST) pas boss fight di game ini gokil parah! Musiknya bener-bener nge-carry seluruh gameplay biar makin berasa tegang. Lu harus denger track yang satu ini:
-                    </div>
-                    
-                    <div class="msg-embed">
-                        <a href="https://spotify.com" target="_blank" class="embed-title">Cyberpunk OST - Rebel Path (Violin Version)</a>
-                        <div class="embed-desc">Mendengarkan via Spotify. Aransemen string dicampur synth modern yang bikin adrenalin naik parah pas grinding.</div>
-                    </div>
-                    
-                    <div class="reactions">
-                        <button class="reaction-badge">🎵 15</button>
-                        <button class="reaction-badge">❤️ 9</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
+        <div class="message-list" id="message-container"></div>
 
         <div class="chat-input-area">
-            <div class="fake-input">Hanya pemilik blog yang dapat mengirim pesan di sini...</div>
+            <div class="input-wrapper">
+                <input type="text" id="blog-input" class="chat-input" placeholder="Ketik status blog lalu tekan Enter atau kirim...">
+                <button class="send-btn" onclick="addNewMessage()">Kirim</button>
+            </div>
         </div>
     </div>
 
+    <script>
+        // Simulasi Database Penyimpanan Data Artikel Blog
+        const blogData = {
+            'game-review': [
+                {
+                    time: "Hari ini pukul 14:20",
+                    text: "Baru main game Cyberpunk selama 3 jam nonstop hari ini. Sumpah, grafik 10/10 setelah update terbaru, tapi mekanik combat-nya masih agak kaku dikit di awal. Kalau lu suka tipe game eksplorasi kota distopia distrik malam, wajib angkat sih pas lagi diskon!",
+                    likes: 12,
+                    type: "text"
+                }
+            ],
+            'now-playing': [
+                {
+                    time: "Kemarin pukul 21:05",
+                    text: "Soundtrack (OST) pas boss fight di game Devil May Cry 5 ini bener-bener gokil parah! Bikin adrenalin naik pas lagi grinding. Cobain dengerin:",
+                    likes: 24,
+                    type: "spotify",
+                    embedUrl: "https://open.spotify.com/embed/track/1bWhw7SpZ6Un77v6gpw76G" // Link embed widget Spotify asli
+                }
+            ],
+            'setup-gaming': [
+                {
+                    time: "3 hari yang lalu",
+                    text: "Kabel manajemen di bawah meja gw udah mirip mi goreng instan. Perlu dirapiin weekend ini sebelum ada tikus bersarang pfftt..",
+                    likes: 5,
+                    type: "text"
+                }
+            ]
+        };
+
+        let currentChannel = 'game-review';
+
+        // Fungsi utama untuk menggambar pesan pada layar pembaca
+        function renderMessages() {
+            const container = document.getElementById('message-container');
+            container.innerHTML = ''; // bersihkan kontainer chat lama
+
+            const messages = blogData[currentChannel] || [];
+
+            messages.forEach((msg, index) => {
+                let embedHTML = '';
+                if (msg.type === 'spotify') {
+                    embedHTML = `
+                        <div class="spotify-embed">
+                            <iframe src="${msg.embedUrl}" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                        </div>
+                    `;
+                }
+
+                const msgHTML = `
+                    <div class="message-group">
+                        <div class="msg-avatar">GG</div>
+                        <div class="msg-content-wrapper">
+                            <div class="msg-header">
+                                <span class="msg-author">GamerGokil</span>
+                                <span class="msg-time">${msg.time}</span>
+                            </div>
+                            <div class="msg-text">${msg.text}</div>
+                            ${embedHTML}
+                            <div class="reactions">
+                                <button class="reaction-badge" onclick="addLike(${index})">🔥 <span id="like-count-${index}">${msg.likes}</span></button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += msgHTML;
+            });
+
+            // Otomatis scroll layar ke baris terbawah
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Fungsi mengganti channel saat kategori diklik
+        function switchChannel(channelKey, description) {
+            currentChannel = channelKey;
+            
+            document.getElementById('current-channel-name').innerText = `# ${channelKey}`;
+            document.getElementById('current-channel-desc').innerText = `| ${description}`;
+
+            // Reset indikator aktif di bagian sidebar menu
+            document.querySelectorAll('.channel-item').forEach(item => {
+                item.classList.remove('active');
+                if(item.innerText === channelKey) {
+                    item.classList.add('active');
+                }
+            });
+
+            renderMessages();
+        }
+
+        // Fungsi untuk menambahkan pesan baru
+        function addNewMessage() {
+            const input = document.getElementById('blog-input');
+            const text = input.value.trim();
+            if (!text) return; // batalkan jika kolom input kosong
+
+            blogData[currentChannel].push({
+                time: "Baru saja",
+                text: text,
+                likes: 0,
+                type: "text"
+            });
+
+            input.value = ''; // bersihkan bar input teks
+            renderMessages(); // muat ulang konten chat
+        }
+
+        // Listener agar bisa kirim chat pakai enter di keyboard
+        document.getElementById('blog-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addNewMessage();
+            }
+        });
+
+        // Fungsi menambah nilai tombol reaksi suka
+        function addLike(index) {
+            blogData[currentChannel][index].likes += 1;
+            document.getElementById(`like-count-${index}`).innerText = blogData[currentChannel][index].likes;
+        }
+
+        // Jalankan render muatan pertama kali saat aplikasi dibuka
+        renderMessages();
+    </script>
 </body>
-              </html>
-              
+    </html>
+    
