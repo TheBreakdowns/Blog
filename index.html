@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Discord-Style Blog</title>
+    <!-- Menggunakan Tailwind CSS untuk styling cepat -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome untuk Ikon Medsos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Warna kustom khas Discord */
+        .bg-discord-dark { background-color: #202225; }
+        .bg-discord-sidebar { background-color: #2f3136; }
+        .bg-discord-main { background-color: #36393f; }
+        .bg-discord-blurple { background-color: #5865F2; }
+        .text-discord-muted { color: #b9bbbe; }
+    </style>
+</head>
+<body class="bg-discord-dark text-white font-sans flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR 1: Ala Ikon Server (Social Media Quick Links) -->
+    <div class="w-18 bg-discord-dark flex flex-col items-center py-3 gap-2 border-r border-zinc-800">
+        <!-- Home / Logo Blog -->
+        <a href="#" class="w-12 h-12 bg-discord-blurple rounded-3xl hover:rounded-2xl flex items-center justify-center transition-all duration-200 group relative">
+            <i class="fa-solid fa-house text-xl"></i>
+            <span class="absolute left-16 bg-black text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Home</span>
+        </a>
+        
+        <div class="w-8 h-[2px] bg-zinc-700 my-1 rounded"></div>
+
+        <!-- Instagram -->
+        <a href="https://instagram.com/username" target="_blank" class="w-12 h-12 bg-zinc-700 hover:bg-pink-600 rounded-3xl hover:rounded-2xl flex items-center justify-center transition-all duration-200 group relative">
+            <i class="fa-brands fa-instagram text-xl"></i>
+            <span class="absolute left-16 bg-black text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Instagram</span>
+        </a>
+
+        <!-- Twitter / X -->
+        <a href="https://x.com/username" target="_blank" class="w-12 h-12 bg-zinc-700 hover:bg-sky-500 rounded-3xl hover:rounded-2xl flex items-center justify-center transition-all duration-200 group relative">
+            <i class="fa-brands fa-x-twitter text-xl"></i>
+            <span class="absolute left-16 bg-black text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">Twitter / X</span>
+        </a>
+
+        <!-- GitHub -->
+        <a href="https://github.com/username" target="_blank" class="w-12 h-12 bg-zinc-700 hover:bg-zinc-900 rounded-3xl hover:rounded-2xl flex items-center justify-center transition-all duration-200 group relative">
+            <i class="fa-brands fa-github text-xl"></i>
+            <span class="absolute left-16 bg-black text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10">GitHub</span>
+        </a>
+    </div>
+
+    <!-- SIDEBAR 2: Ala Channel List (Kategori Blog & Info Profil) -->
+    <div class="w-60 bg-discord-sidebar flex flex-col justify-between">
+        <div>
+            <!-- Header Nama Server / Blog -->
+            <div class="h-12 border-b border-zinc-800 flex items-center px-4 font-bold shadow-sm">
+                🌐 MY ESPACE
+            </div>
+            
+            <!-- Daftar Kategori / Channels -->
+            <div class="p-2 space-y-1">
+                <p class="text-xs font-semibold text-discord-muted px-2 uppercase tracking-wider">Info & Links</p>
+                <a href="#" class="flex items-center gap-2 px-2 py-1.5 rounded bg-zinc-700 text-white text-sm font-medium">
+                    <span class="text-xl text-discord-muted">#</span> welcome-links
+                </a>
+                
+                <p class="text-xs font-semibold text-discord-muted px-2 uppercase tracking-wider mt-4">Blog Categories</p>
+                <a href="#" class="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-zinc-700/50 text-discord-muted hover:text-white text-sm transition-colors">
+                    <span class="text-xl">#</span> tech-reviews
+                </a>
+                <a href="#" class="flex items-center gap-2 px-2 py-1.5 rounded hover:bg-zinc-700/50 text-discord-muted hover:text-white text-sm transition-colors">
+                    <span class="text-xl">#</span> daily-thoughts
+                </a>
+            </div>
+        </div>
+
+        <!-- Profil User di bagian bawah sidebar -->
+        <div class="p-2 bg-[#292b2f] flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="relative">
+                    <img src="https://via.placeholder.com/40" alt="Avatar" class="w-8 h-8 rounded-full">
+                    <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-[#292b2f]"></div>
+                </div>
+                <div>
+                    <p class="text-xs font-bold leading-tight">YourName</p>
+                    <p class="text-[10px] text-discord-muted leading-none">#0001</p>
+                </div>
+            </div>
+            <div class="flex gap-2 text-discord-muted text-sm">
+                <button class="hover:text-white"><i class="fa-solid fa-microphone"></i></button>
+                <button class="hover:text-white"><i class="fa-solid fa-gear"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AREA UTAMA: Ala Chat Room (Konten Utama & Link Medsos Tambahan) -->
+    <div class="flex-1 bg-discord-main flex flex-col">
+        <!-- Top Bar -->
+        <div class="h-12 border-b border-zinc-800 flex items-center px-4 shadow-sm text-sm font-bold gap-2">
+            <span class="text-xl text-discord-muted">#</span> welcome-links
+            <span class="text-xs font-normal text-discord-muted border-l border-zinc-700 pl-2">Tempat nongkrong dan link sosial mediaku!</span>
+        </div>
+
+        <!-- Konten Chat / Feed Blog -->
+        <div class="flex-1 overflow-y-auto p-4 space-y-6">
+            
+            <!-- Pesan Sambutan Khas Discord -->
+            <div class="bg-discord-sidebar p-4 rounded-lg border-l-4 border-discord-blurple shadow-md max-w-2xl">
+                <h1 class="text-xl font-extrabold mb-1">Selamat datang di Blog-ku! 👋</h1>
+                <p class="text-sm text-discord-muted">Ini adalah halaman depan berbasis gaya Discord. Di sini kamu bisa menemukan semua link sosial media aktifku dan membaca beberapa artikel terbaru.</p>
+            </div>
+
+            <!-- Bagian Embed ala Discord untuk Link Medsos -->
+            <div class="space-y-4 max-w-2xl">
+                <p class="text-xs font-bold text-discord-muted uppercase tracking-wider">Social Connections</p>
+                
+                <!-- Card Medsos 1 -->
+                <div class="bg-[#2f3136] rounded border border-zinc-700 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-pink-600/20 text-pink-500 rounded flex items-center justify-center text-xl">
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm">Instagram</h3>
+                            <p class="text-xs text-discord-muted">Foto estetik dan update daily story.</p>
+                        </div>
+                    </div>
+                    <a href="https://instagram.com/username" target="_blank" class="bg-discord-blurple hover:bg-[#4752C4] text-xs font-medium px-4 py-1.5 rounded transition-colors">Follow</a>
+                </div>
+
+                <!-- Card Medsos 2 -->
+                <div class="bg-[#2f3136] rounded border border-zinc-700 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-sky-500/20 text-sky-400 rounded flex items-center justify-center text-xl">
+                            <i class="fa-brands fa-x-twitter"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm">Twitter / X</h3>
+                            <p class="text-xs text-discord-muted">Isi pikiran random dan tech-talk.</p>
+                        </div>
+                    </div>
+                    <a href="https://x.com/username" target="_blank" class="bg-discord-blurple hover:bg-[#4752C4] text-xs font-medium px-4 py-1.5 rounded transition-colors">Follow</a>
+                </div>
+
+                <!-- Card Medsos 3 -->
+                <div class="bg-[#2f3136] rounded border border-zinc-700 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-green-500/20 text-green-400 rounded flex items-center justify-center text-xl">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm">Contact WhatsApp</h3>
+                            <p class="text-xs text-discord-muted">Untuk keperluan bisnis atau kolaborasi.</p>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/nomorhp" target="_blank" class="bg-green-650 bg-green-600 hover:bg-green-700 text-xs font-medium px-4 py-1.5 rounded transition-colors">Chat</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
