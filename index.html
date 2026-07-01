@@ -6,7 +6,7 @@
     <title>Breakdowns Blog</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Versi Terbaru (6.6.0) untuk memastikan semua ikon brand muncul -->
+    <!-- Font Awesome Versi Terbaru -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
         .bg-discord-dark { background-color: #202225; }
@@ -14,32 +14,14 @@
         .bg-discord-main { background-color: #36393f; }
         .bg-discord-blurple { background-color: #5865F2; }
         .text-discord-muted { color: #b9bbbe; }
-        /* Menyembunyikan scrollbar bawaan pada list kategori mobile */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
 <body class="bg-discord-dark text-white font-sans flex flex-col md:flex-row h-screen overflow-hidden">
 
-    <!-- SIDEBAR 1 (Ikon Kiri): Hanya muncul di Landscape/Desktop (md:) -->
-    <div class="hidden md:flex w-18 bg-discord-dark flex flex-col items-center py-3 gap-3 border-r border-zinc-800 flex-shrink-0">
-        <a href="#" class="w-12 h-12 bg-discord-blurple rounded-3xl hover:rounded-2xl flex items-center justify-center transition-all duration-200">
-            <i class="fa-solid fa-house text-xl"></i>
-        </a>
-        <div class="w-8 h-[2px] bg-zinc-700 my-1 rounded"></div>
-        <a href="https://www.instagram.com/hftzphas" target="_blank" class="w-12 h-12 bg-zinc-700 hover:bg-pink-600 rounded-3xl hover:rounded-2xl flex items-center justify-center transition-all duration-200">
-            <i class="fa-brands fa-instagram text-xl"></i>
-        </a>
-        <a href="https://x.com/hftzphas" target="_blank" class="w-12 h-12 bg-zinc-700 hover:bg-sky-500 rounded-3xl hover:rounded-2xl flex items-center justify-center transition-all duration-200">
-            <i class="fa-brands fa-x-twitter text-xl"></i>
-        </a>
-        <a href="https://github.com/breakdowns" target="_blank" class="w-12 h-12 bg-zinc-700 hover:bg-zinc-900 rounded-3xl hover:rounded-2xl flex items-center justify-center transition-all duration-200">
-            <i class="fa-brands fa-github text-xl"></i>
-        </a>
-    </div>
-
-    <!-- SIDEBAR 2 (List Room): Hanya muncul di Landscape/Desktop (md:) -->
-    <div class="hidden md:flex w-60 bg-discord-sidebar flex-col justify-between flex-shrink-0">
+    <!-- SIDEBAR 1: DAFTAR ROOM (Hanya muncul saat Landscape / md:) -->
+    <div class="hidden md:flex w-60 bg-discord-sidebar flex-col justify-between flex-shrink-0 border-r border-zinc-800">
         <div>
             <div class="h-12 border-b border-zinc-800 flex items-center px-4 font-bold shadow-sm text-sm uppercase tracking-wider truncate">
                 🌐 Breakdowns Blog
@@ -73,14 +55,14 @@
         </div>
     </div>
 
-    <!-- TOP BAR MOBILE: Tombol Kembali Sudah Dihapus & Lebih Rapi -->
-    <div class="bg-discord-dark md:hidden flex flex-col p-3 border-b border-zinc-800 gap-3 flex-shrink-0">
+    <!-- TOP BAR MOBILE: Hanya muncul saat Layar Berdiri (Portrait) -->
+    <div class="bg-discord-dark md:hidden flex flex-col p-3 border-b border-zinc-800 gap-3 flex-shrink-0 w-full">
         <div class="flex items-center gap-2">
             <span class="text-sm font-bold tracking-wide">🎮 Breakdowns Room</span>
         </div>
         
         <!-- List Kategori Horizontal -->
-        <div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar">
+        <div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar w-full">
             <a href="#" class="bg-discord-blurple text-white text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap">
                 # welcome-links
             </a>
@@ -93,8 +75,8 @@
         </div>
     </div>
 
-    <!-- AREA UTAMA: Tempat Konten Utama (List Sosmed) -->
-    <div class="flex-1 bg-discord-main flex flex-col min-w-0">
+    <!-- AREA UTAMA: Konten List Sosmed (Responsif & Bisa diklik lancar) -->
+    <div class="flex-1 bg-discord-main flex flex-col min-w-0 w-full relative z-10">
         <!-- Top Title Bar (Hanya muncul di Desktop) -->
         <div class="hidden md:flex h-12 border-b border-zinc-800 items-center px-4 shadow-sm text-sm font-bold gap-2 flex-shrink-0">
             <span class="text-xl text-discord-muted">#</span> welcome-links
@@ -102,7 +84,7 @@
         </div>
 
         <!-- Konten Utama (Scrollable) -->
-        <div class="flex-1 overflow-y-auto p-4 space-y-5">
+        <div class="flex-1 overflow-y-auto p-4 space-y-5 w-full">
             
             <!-- Welcome Info Banner -->
             <div class="border-b border-zinc-700/50 pb-4">
@@ -113,10 +95,10 @@
             </div>
 
             <!-- List Cards Medsos -->
-            <div class="space-y-2.5 max-w-2xl">
+            <div class="space-y-2.5 max-w-2xl w-full">
                 
                 <!-- Instagram -->
-                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3">
+                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3 w-full">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-9 h-9 bg-pink-600/20 text-pink-500 rounded flex items-center justify-center text-lg flex-shrink-0"><i class="fa-brands fa-instagram"></i></div>
                         <div class="min-w-0"><h3 class="font-bold text-sm truncate">Instagram</h3><p class="text-xs text-discord-muted truncate">@hftzphas</p></div>
@@ -124,8 +106,8 @@
                     <a href="https://www.instagram.com/hftzphas" target="_blank" class="bg-discord-blurple hover:bg-[#4752C4] text-xs font-medium px-4 py-1.5 rounded transition-colors flex-shrink-0">Open</a>
                 </div>
 
-                <!-- X / Twitter (Sekarang pakai class fa-x-twitter dengan CDN baru) -->
-                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3">
+                <!-- X / Twitter -->
+                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3 w-full">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-9 h-9 bg-zinc-700/40 text-zinc-300 rounded flex items-center justify-center text-lg flex-shrink-0"><i class="fa-brands fa-x-twitter"></i></div>
                         <div class="min-w-0"><h3 class="font-bold text-sm truncate">X / Twitter</h3><p class="text-xs text-discord-muted truncate">@hftzphas</p></div>
@@ -134,7 +116,7 @@
                 </div>
 
                 <!-- GitHub -->
-                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3">
+                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3 w-full">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-9 h-9 bg-zinc-900/40 text-zinc-300 rounded flex items-center justify-center text-lg flex-shrink-0"><i class="fa-brands fa-github"></i></div>
                         <div class="min-w-0"><h3 class="font-bold text-sm truncate">GitHub</h3><p class="text-xs text-discord-muted truncate">@breakdowns</p></div>
@@ -143,7 +125,7 @@
                 </div>
 
                 <!-- Discord -->
-                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3">
+                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3 w-full">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-9 h-9 bg-indigo-600/20 text-indigo-400 rounded flex items-center justify-center text-lg flex-shrink-0"><i class="fa-brands fa-discord"></i></div>
                         <div class="min-w-0"><h3 class="font-bold text-sm truncate">Discord</h3><p class="text-xs text-discord-muted truncate">View Profile</p></div>
@@ -152,7 +134,7 @@
                 </div>
 
                 <!-- Telegram -->
-                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3">
+                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3 w-full">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-9 h-9 bg-blue-500/20 text-blue-400 rounded flex items-center justify-center text-lg flex-shrink-0"><i class="fa-brands fa-telegram"></i></div>
                         <div class="min-w-0"><h3 class="font-bold text-sm truncate">Telegram</h3><p class="text-xs text-discord-muted truncate">@hafitzXD</p></div>
@@ -161,7 +143,7 @@
                 </div>
 
                 <!-- YouTube -->
-                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3">
+                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3 w-full">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-9 h-9 bg-red-600/20 text-red-500 rounded flex items-center justify-center text-lg flex-shrink-0"><i class="fa-brands fa-youtube"></i></div>
                         <div class="min-w-0"><h3 class="font-bold text-sm truncate">YouTube</h3><p class="text-xs text-discord-muted truncate">@hafitz</p></div>
@@ -170,7 +152,7 @@
                 </div>
 
                 <!-- TikTok -->
-                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3">
+                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3 w-full">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-9 h-9 bg-zinc-800 text-white rounded flex items-center justify-center text-lg flex-shrink-0"><i class="fa-brands fa-tiktok"></i></div>
                         <div class="min-w-0"><h3 class="font-bold text-sm truncate">TikTok</h3><p class="text-xs text-discord-muted truncate">@hftzphas</p></div>
@@ -178,8 +160,8 @@
                     <a href="https://www.tiktok.com/@hftzphas" target="_blank" class="bg-discord-blurple hover:bg-[#4752C4] text-xs font-medium px-4 py-1.5 rounded transition-colors flex-shrink-0">Open</a>
                 </div>
 
-                <!-- Threads (Sekarang pakai class fa-threads dengan CDN baru) -->
-                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3">
+                <!-- Threads -->
+                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3 w-full">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-9 h-9 bg-zinc-700/50 text-white rounded flex items-center justify-center text-lg flex-shrink-0"><i class="fa-brands fa-threads"></i></div>
                         <div class="min-w-0"><h3 class="font-bold text-sm truncate">Threads</h3><p class="text-xs text-discord-muted truncate">@hftzphas</p></div>
@@ -188,7 +170,7 @@
                 </div>
 
                 <!-- Facebook -->
-                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3">
+                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3 w-full">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-9 h-9 bg-blue-600/20 text-blue-500 rounded flex items-center justify-center text-lg flex-shrink-0"><i class="fa-brands fa-facebook font-black"></i></div>
                         <div class="min-w-0"><h3 class="font-bold text-sm truncate">Facebook</h3><p class="text-xs text-discord-muted truncate">hftzphas</p></div>
@@ -197,7 +179,7 @@
                 </div>
 
                 <!-- Spotify -->
-                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3">
+                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3 w-full">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-9 h-9 bg-green-500/20 text-green-400 rounded flex items-center justify-center text-lg flex-shrink-0"><i class="fa-brands fa-spotify"></i></div>
                         <div class="min-w-0"><h3 class="font-bold text-sm truncate">Spotify</h3><p class="text-xs text-discord-muted truncate">Music Playlist</p></div>
@@ -206,7 +188,7 @@
                 </div>
 
                 <!-- Reddit -->
-                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3">
+                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3 w-full">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-9 h-9 bg-orange-600/20 text-orange-500 rounded flex items-center justify-center text-lg flex-shrink-0"><i class="fa-brands fa-reddit"></i></div>
                         <div class="min-w-0"><h3 class="font-bold text-sm truncate">Reddit</h3><p class="text-xs text-discord-muted truncate">u/hftzphas</p></div>
@@ -215,7 +197,7 @@
                 </div>
 
                 <!-- Mastodon -->
-                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3">
+                <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple transition-colors gap-3 w-full">
                     <div class="flex items-center gap-3 min-w-0">
                         <div class="w-9 h-9 bg-purple-600/20 text-purple-400 rounded flex items-center justify-center text-lg flex-shrink-0"><i class="fa-brands fa-mastodon"></i></div>
                         <div class="min-w-0"><h3 class="font-bold text-sm truncate">Mastodon</h3><p class="text-xs text-discord-muted truncate">@hftzphas</p></div>
