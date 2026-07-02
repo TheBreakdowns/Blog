@@ -1,4 +1,4 @@
-var dataCoding = [
+window.dataCoding = [
     {
         username: "hafitz",
         tag: "0001",
