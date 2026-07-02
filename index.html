@@ -15,68 +15,180 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
+    <script src="./data/gaming.js"></script>
+    <script src="./data/music.js"></script>
+    <script src="./data/coding.js"></script>
 </head>
 <body class="bg-discord-dark text-white font-sans flex flex-col md:flex-row min-h-screen w-full overflow-x-hidden">
 
-    <!-- SIDEBAR LEFT -->
     <div class="hidden md:flex w-60 bg-discord-sidebar flex-col justify-between flex-shrink-0 border-r border-zinc-800 min-h-screen sticky top-0">
         <div>
             <div class="h-12 border-b border-zinc-800 flex items-center px-4 font-bold shadow-sm text-sm uppercase tracking-wider truncate">🌐 Breakdowns Blog</div>
-            <div class="p-2 space-y-1" id="desktop-menu">
-                <button onclick="switchRoom('welcome-links')" class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left bg-zinc-700 text-white"># welcome-links</button>
-                <button onclick="switchRoom('gaming')" class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left text-discord-muted hover:bg-zinc-700/50 hover:text-white"># gaming</button>
-                <button onclick="switchRoom('music')" class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left text-discord-muted hover:bg-zinc-700/50 hover:text-white"># music</button>
-                <button onclick="switchRoom('coding')" class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left text-discord-muted hover:bg-zinc-700/50 hover:text-white"># coding</button>
+            <div class="p-2 space-y-1">
+                <p class="text-xs font-semibold text-discord-muted px-2 uppercase tracking-wider">Info & Links</p>
+                <button onclick="switchRoom('welcome-links')" id="btn-welcome-links" class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left bg-zinc-700 text-white">
+                    <span class="text-xl text-discord-muted">#</span> welcome-links
+                </button>
+                <p class="text-xs font-semibold text-discord-muted px-2 uppercase tracking-wider mt-4">Blog Categories</p>
+                <button onclick="switchRoom('gaming')" id="btn-gaming" class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left text-discord-muted hover:bg-zinc-700/50 hover:text-white"><span class="text-xl">#</span> gaming</button>
+                <button onclick="switchRoom('music')" id="btn-music" class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left text-discord-muted hover:bg-zinc-700/50 hover:text-white"><span class="text-xl">#</span> music</button>
+                <button onclick="switchRoom('coding')" id="btn-coding" class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left text-discord-muted hover:bg-zinc-700/50 hover:text-white"><span class="text-xl">#</span> coding</button>
             </div>
         </div>
-        <div class="p-2 bg-[#292b2f] text-center text-xs text-discord-muted">Hafitz #0001</div>
-    </div>
-
-    <!-- AREA UTAMA -->
-    <div class="flex-1 bg-discord-main flex flex-col min-w-0 min-h-full">
-        <div class="p-4 space-y-5 pb-32" id="content-area">
-            <!-- Isi konten akan berubah otomatis di sini -->
-            <div id="view-welcome-links">
-                <h1 class="text-xl font-bold">Hafitz P. H. A. S.</h1>
-                <p class="text-sm text-discord-muted mb-4">| Tempat nongkrong & link sosmed resmi.</p>
-                <div class="space-y-2">
-                    <!-- Semua link sosmed lu taruh di sini -->
-                    <div class="bg-[#2f3136] p-3 rounded flex justify-between items-center"><span>Instagram</span><a href="https://www.instagram.com/hftzphas" class="bg-discord-blurple px-3 py-1 rounded text-xs">Open</a></div>
-                    <div class="bg-[#2f3136] p-3 rounded flex justify-between items-center"><span>GitHub</span><a href="https://github.com/breakdowns" class="bg-discord-blurple px-3 py-1 rounded text-xs">Open</a></div>
-                    <!-- Tambahin link lainnya di sini ya -->
+        <div class="p-2 bg-[#292b2f] flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="relative">
+                    <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" class="w-8 h-8 rounded-full object-cover">
+                    <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-[#292b2f]"></div>
+                </div>
+                <div>
+                    <p class="text-xs font-bold leading-tight">hafitz</p>
+                    <p class="text-[10px] text-discord-muted leading-none">#0001</p>
                 </div>
             </div>
-            <div id="view-blog" class="hidden"></div>
+        </div>
+    </div>
+
+    <div class="block md:hidden bg-discord-dark p-3 border-b border-zinc-800 w-full flex-shrink-0 select-none sticky top-0 z-50">
+        <div class="flex items-center gap-2 mb-2"><span class="text-sm font-bold tracking-wide">🎮 Breakdowns Room</span></div>
+        <div class="w-full overflow-x-scroll no-scrollbar touch-pan-x">
+            <div class="flex flex-nowrap gap-2 pb-1 w-max">
+                <button onclick="switchRoom('welcome-links')" id="mbtn-welcome-links" class="text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap bg-discord-blurple text-white"># welcome-links</button>
+                <button onclick="switchRoom('gaming')" id="mbtn-gaming" class="text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap bg-[#2f3136] text-discord-muted hover:text-white"># gaming</button>
+                <button onclick="switchRoom('music')" id="mbtn-music" class="text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap bg-[#2f3136] text-discord-muted hover:text-white"># music</button>
+                <button onclick="switchRoom('coding')" id="mbtn-coding" class="text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap bg-[#2f3136] text-discord-muted hover:text-white"># coding</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 bg-discord-main flex flex-col min-w-0 min-h-full">
+        <div class="hidden md:flex h-12 border-b border-zinc-800 items-center px-4 shadow-sm text-sm font-bold gap-2 flex-shrink-0">
+            <span class="text-xl text-discord-muted">#</span> <span id="room-header-title">welcome-links</span>
+            <span class="text-xs font-normal text-discord-muted border-l border-zinc-700 pl-2" id="room-header-desc">Social media directory for Breakdowns Blog</span>
+        </div>
+
+        <div class="p-4 space-y-5 pb-32 md:pb-12 flex-1">
+            <div id="welcome-links-view" class="space-y-5">
+                <div class="border-b border-zinc-700/50 pb-4 flex items-center gap-3">
+                    <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" class="w-12 h-12 rounded-full object-cover border border-zinc-600 shadow-lg">
+                    <div>
+                        <span class="text-lg font-bold text-white block">Hafitz P. H. A. S.</span>
+                        <p class="text-xs text-discord-muted">| Tempat nongkrong & link sosmed resmi.</p>
+                    </div>
+                </div>
+                <div class="space-y-2.5 max-w-2xl w-full">
+                    <div id="sosmed-container" class="space-y-2.5"></div>
+                </div>
+            </div>
+
+            <div id="blog-posts-view" class="hidden space-y-6"></div>
         </div>
     </div>
 
     <script>
-        const blogData = {
-            gaming: [{ title: "Review ML", content: "Meta sekarang chaos...", emoji: "🎮", react: 24 }],
-            music: [{ title: "Spotify List", content: "Lagi dengerin metalcore...", emoji: "🎵", react: 15 }],
-            coding: [{ title: "Dev Log", content: "Sukses bikin sistem SPA!", emoji: "💻", react: 10 }]
+        const descriptions = {
+            'welcome-links': 'Social media directory for Breakdowns Blog',
+            'gaming': 'Tempat review jujur seputar game.',
+            'music': 'Jamming session & track harian.',
+            'coding': 'Catatan development & update tech log.'
         };
 
-        function switchRoom(room) {
-            const contentArea = document.getElementById('view-blog');
-            const welcomeArea = document.getElementById('view-welcome-links');
-            
-            if(room === 'welcome-links') {
-                welcomeArea.classList.remove('hidden');
-                contentArea.classList.add('hidden');
+        // Data 12 Sosmed Lengkap dipindah ke sini biar HTML tidak kepanjangan
+        const sosmedList = [
+            { name: "Instagram", user: "@hftzphas", url: "https://www.instagram.com/hftzphas", icon: "fa-brands fa-instagram", bg: "bg-pink-600/20 text-pink-500" },
+            { name: "X / Twitter", user: "@hftzphas", url: "https://x.com/hftzphas", icon: "fa-brands fa-x-twitter", bg: "bg-zinc-700/40 text-zinc-300" },
+            { name: "GitHub", user: "@breakdowns", url: "https://github.com/breakdowns", icon: "fa-brands fa-github", bg: "bg-zinc-900/40 text-zinc-300" },
+            { name: "Discord", user: "View Profile", url: "https://discord.com/users/455173359924412434", icon: "fa-brands fa-discord", bg: "bg-indigo-600/20 text-indigo-400" },
+            { name: "Telegram", user: "@hafitzXD", url: "https://t.me/hafitzXD", icon: "fa-brands fa-telegram", bg: "bg-blue-500/20 text-blue-400" },
+            { name: "YouTube", user: "@hafitz", url: "https://youtube.com/@hafitz", icon: "fa-brands fa-youtube", bg: "bg-red-600/20 text-red-500" },
+            { name: "TikTok", user: "@hftzphas", url: "https://www.tiktok.com/@hftzphas", icon: "fa-brands fa-tiktok", bg: "bg-zinc-800 text-white" },
+            { name: "Threads", user: "@hftzphas", url: "https://www.threads.net/@hftzphas", icon: "fa-brands fa-threads", bg: "bg-zinc-700/50 text-white" },
+            { name: "Facebook", user: "hftzphas", url: "https://www.facebook.com/hftzphas", icon: "fa-brands fa-facebook", bg: "bg-blue-600/20 text-blue-500" },
+            { name: "Spotify", user: "Music Playlist", url: "https://open.spotify.com/user/7wxw9ydcqjc4ta495h73jpcjf", icon: "fa-brands fa-spotify", bg: "bg-green-500/20 text-green-400" },
+            { name: "Reddit", user: "u/hftzphas", url: "https://reddit.com/u/hftzphas", icon: "fa-brands fa-reddit", bg: "bg-orange-600/20 text-orange-500" },
+            { name: "Mastodon", user: "@hftzphas", url: "https://mastodon.social/@hftzphas", icon: "fa-brands fa-mastodon", bg: "bg-purple-600/20 text-purple-400" }
+        ];
+
+        // Cetak 12 sosmed pas halaman pertama kali dibuka
+        document.getElementById('sosmed-container').innerHTML = sosmedList.map(s => `
+            <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple hover:bg-[#393c43] transform hover:-translate-y-0.5 transition-all duration-200 gap-3">
+                <div class="flex items-center gap-3 min-w-0">
+                    <div class="w-9 h-9 ${s.bg} rounded flex items-center justify-center text-lg flex-shrink-0"><i class="${s.icon}"></i></div>
+                    <div class="min-w-0"><h3 class="font-bold text-sm truncate">${s.name}</h3><p class="text-xs text-discord-muted truncate">${s.user}</p></div>
+                </div>
+                <a href="${s.url}" target="_blank" class="bg-discord-blurple hover:bg-[#4752C4] text-xs font-medium px-4 py-1.5 rounded transition-colors flex-shrink-0">Open</a>
+            </div>
+        `).join('');
+
+        function switchRoom(roomName) {
+            document.getElementById('room-header-title').innerText = roomName;
+            document.getElementById('room-header-desc').innerText = descriptions[roomName] || '';
+
+            const menus = ['welcome-links', 'gaming', 'music', 'coding'];
+            menus.forEach(m => {
+                const dBtn = document.getElementById(`btn-${m}`);
+                const mBtn = document.getElementById(`mbtn-${m}`);
+                if(m === roomName) {
+                    if(dBtn) dBtn.className = "w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left bg-zinc-700 text-white";
+                    if(mBtn) mBtn.className = "text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap bg-discord-blurple text-white";
+                } else {
+                    if(dBtn) dBtn.className = "w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left text-discord-muted hover:bg-zinc-700/50 hover:text-white";
+                    if(mBtn) mBtn.className = "text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap bg-[#2f3136] text-discord-muted hover:text-white";
+                }
+            });
+
+            const sosmedView = document.getElementById('welcome-links-view');
+            const blogView = document.getElementById('blog-posts-view');
+
+            if (roomName === 'welcome-links') {
+                sosmedView.classList.remove('hidden');
+                blogView.classList.add('hidden');
             } else {
-                welcomeArea.classList.add('hidden');
-                contentArea.classList.remove('hidden');
-                const posts = blogData[room];
-                contentArea.innerHTML = posts.map(p => `
-                    <div class="bg-[#2f3136] p-4 rounded">
-                        <h2 class="font-bold text-discord-blurple">${p.title}</h2>
-                        <p class="text-sm mt-2">${p.content}</p>
-                        <div class="mt-3 text-xs">${p.emoji} ${p.react}</div>
+                sosmedView.classList.add('hidden');
+                blogView.classList.remove('hidden');
+                
+                // Ambil data dari folder /data/ yang sudah diload di <head>
+                let posts = [];
+                if(roomName === 'gaming') posts = typeof dataGaming !== 'undefined' ? dataGaming : [];
+                if(roomName === 'music') posts = typeof dataMusic !== 'undefined' ? dataMusic : [];
+                if(roomName === 'coding') posts = typeof dataCoding !== 'undefined' ? dataCoding : [];
+
+                let htmlContent = `
+                    <div class="border-b border-zinc-700/50 pb-4">
+                        <div class="w-12 h-12 bg-zinc-700 rounded-full flex items-center justify-center mb-2"><i class="fa-solid fa-hashtag text-2xl text-white"></i></div>
+                        <h1 class="text-2xl font-bold">Selamat datang di #${roomName}!</h1>
+                        <p class="text-sm text-discord-muted">Ini adalah awal mula dari channel #${roomName}.</p>
                     </div>
-                `).join('');
+                `;
+
+                posts.forEach(post => {
+                    htmlContent += `
+                        <div class="flex gap-3 items-start hover:bg-zinc-800/20 p-2 rounded transition-colors">
+                            <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+                            <div>
+                                <div class="flex items-baseline gap-2">
+                                    <span class="font-bold text-sm text-white hover:underline cursor-pointer">${post.username}</span>
+                                    <span class="text-[10px] text-discord-muted font-normal">#${post.tag}</span>
+                                    <span class="text-[10px] text-discord-muted font-normal">${post.timestamp}</span>
+                                </div>
+                                <div class="text-sm text-zinc-200 mt-1 space-y-2 max-w-2xl">
+                                    ${post.title ? `<p class="font-semibold text-discord-blurple text-base">${post.title}</p>` : ''}
+                                    <p>${post.content}</p>
+                                </div>
+                                <div class="flex items-center gap-1 mt-2">
+                                    <div class="bg-[#2f3136] hover:bg-zinc-600 px-2 py-1 rounded text-xs flex items-center gap-1.5 cursor-pointer border border-zinc-700/50 select-none">
+                                        <span>${post.emoji}</span> <span class="text-discord-muted font-bold text-[11px]">${post.reactions}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                blogView.innerHTML = htmlContent;
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
-</html>
+    </html>
+    
