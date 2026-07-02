@@ -78,6 +78,15 @@
 
         <div class="p-6 space-y-6 flex-1 overflow-y-auto w-full max-w-5xl mx-auto pb-24 md:pb-12 no-scrollbar">
             <div id="welcome-links-view" class="space-y-6 w-full">
+                
+                <div class="pt-6 pb-2">
+                    <div class="w-16 h-16 bg-zinc-700 rounded-full flex items-center justify-center mb-4 shadow-md">
+                        <i class="fa-solid fa-book-open text-3xl text-white"></i>
+                    </div>
+                    <h1 class="text-3xl font-extrabold tracking-wide text-white">Selamat datang di #welcome-links!</h1>
+                    <p class="text-sm text-discord-muted mt-1">Ini adalah awal mula dari direktori link sosial media resmi Hafitz P. H. A. S.</p>
+                </div>
+
                 <div class="border-b border-zinc-700/50 pb-5 flex items-center gap-4 w-full">
                     <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" class="w-14 h-14 rounded-full object-cover border border-zinc-600 shadow-lg">
                     <div>
@@ -85,7 +94,7 @@
                         <p class="text-xs text-discord-muted">| Tempat nongkrong & link sosmed resmi.</p>
                     </div>
                 </div>
-                <div id="sosmed-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4.5 w-full"></div>
+                <div id="sosmed-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-4.5 row-gap-5 w-full"></div>
             </div>
 
             <div id="blog-posts-view" class="hidden space-y-6 w-full"></div>
@@ -110,11 +119,10 @@
             { name: "Mastodon", user: "@hftzphas", url: "https://mastodon.social/@hftzphas", icon: "fa-brands fa-mastodon", bg: "bg-purple-600/20 text-purple-400" }
         ];
 
-        // OPTIMASI UKURAN KARTU: Dinaikkan menjadi min-h-[88px] dengan padding p-4.5 agar teks tidak terpotong bintik-bintik dan mengisi sisa space bawah
         document.getElementById('sosmed-container').innerHTML = sosmedList.map(s => `
-            <div class="bg-[#2f3136] rounded-md border border-zinc-700/50 p-4.5 min-h-[88px] flex justify-between items-center hover:border-discord-blurple hover:bg-[#393c43] transform hover:-translate-y-0.5 transition-all duration-200 gap-3 w-full">
+            <div class="bg-[#2f3136] rounded-md border border-zinc-700/50 p-4 min-h-[76px] flex justify-between items-center hover:border-discord-blurple hover:bg-[#393c43] transform hover:-translate-y-0.5 transition-all duration-200 gap-3 w-full">
                 <div class="flex items-center gap-3.5 min-w-0">
-                    <div class="w-11 h-11 ${s.bg} rounded flex items-center justify-center text-xl flex-shrink-0"><i class="${s.icon}"></i></div>
+                    <div class="w-10 h-10 ${s.bg} rounded flex items-center justify-center text-xl flex-shrink-0"><i class="${s.icon}"></i></div>
                     <div class="min-w-0"><h3 class="font-bold text-sm text-white truncate">${s.name}</h3><p class="text-xs text-discord-muted truncate mt-0.5">${s.user}</p></div>
                 </div>
                 <a href="${s.url}" target="_blank" class="bg-discord-blurple hover:bg-[#4752C4] text-xs font-bold px-4 py-2 rounded transition-colors flex-shrink-0 shadow-sm">Open</a>
@@ -201,4 +209,5 @@
         }
     </script>
 </body>
-</html>
+    </html>
+    
