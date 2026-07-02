@@ -23,7 +23,6 @@
         .text-discord-muted { color: #b9bbbe; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        /* Animasi Micro-Interaction Fade In */
         @keyframes fadeInSlide {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
@@ -77,15 +76,15 @@
     </div>
 
     <!-- AREA UTAMA -->
-    <div class="flex-1 bg-discord-main flex flex-col min-w-0 min-h-full">
+    <div class="flex-1 bg-discord-main flex flex-col min-w-0 h-screen overflow-hidden">
         <!-- Top Title Bar -->
         <div class="hidden md:flex h-12 border-b border-zinc-800 items-center px-4 shadow-sm text-sm font-bold gap-2 flex-shrink-0">
             <span class="text-xl text-discord-muted">#</span> <span id="room-header-title">welcome-links</span>
             <span class="text-xs font-normal text-discord-muted border-l border-zinc-700 pl-2" id="room-header-desc">Social media directory for Breakdowns Blog</span>
         </div>
 
-        <!-- Wadah Konten Tengah (Ditambahkan max-w-5xl mx-auto agar seimbang di Android Desktop Mode) -->
-        <div class="p-4 space-y-5 pb-32 md:pb-12 flex-1 overflow-y-auto w-full max-w-5xl mx-auto">
+        <!-- Wadah Konten Scrollable -->
+        <div class="p-4 space-y-5 flex-1 overflow-y-auto w-full max-w-5xl mx-auto no-scrollbar">
             <!-- VIEW 1: SOSMED VIEW -->
             <div id="welcome-links-view" class="space-y-5 w-full">
                 <div class="border-b border-zinc-700/50 pb-4 flex items-center gap-3 w-full">
@@ -95,12 +94,24 @@
                         <p class="text-xs text-discord-muted">| Tempat nongkrong & link sosmed resmi.</p>
                     </div>
                 </div>
-                <!-- Grid 2 kolom seimbang -->
                 <div id="sosmed-container" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 w-full"></div>
             </div>
 
             <!-- VIEW 2: CONTAINER CHAT BLOG CHANNELS -->
             <div id="blog-posts-view" class="hidden space-y-6 w-full"></div>
+        </div>
+
+        <!-- FIXED: CHAT INPUT BOX PENUTUP AREA KOSONG BAWAH -->
+        <div class="p-4 bg-discord-main w-full max-w-5xl mx-auto flex-shrink-0 pb-20 md:pb-6">
+            <div class="w-full bg-[#40444b] rounded-lg h-11 flex items-center px-4 gap-4 text-zinc-400">
+                <div class="w-6 h-6 bg-[#4f545c] rounded-full flex items-center justify-center text-white text-sm cursor-not-allowed"><i class="fa-solid fa-plus"></i></div>
+                <div class="text-sm flex-1 truncate select-none text-zinc-400/60" id="chat-placeholder">Message #welcome-links</div>
+                <div class="flex items-center gap-3 text-zinc-300 text-base">
+                    <i class="fa-solid fa-gift cursor-not-allowed opacity-50"></i>
+                    <i class="fa-solid fa-file-image cursor-not-allowed opacity-50"></i>
+                    <i class="fa-solid fa-face-smile cursor-not-allowed opacity-50"></i>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -136,6 +147,7 @@
         function switchRoom(roomName) {
             document.getElementById('room-header-title').innerText = roomName;
             document.getElementById('room-header-desc').innerText = descriptions[roomName] || '';
+            document.getElementById('chat-placeholder').innerText = `Message #${roomName}`;
 
             const menus = ['welcome-links', 'gaming', 'music', 'coding'];
             menus.forEach(m => {
@@ -209,9 +221,10 @@
                 });
                 blogView.innerHTML = htmlContent;
             }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Reset scroll internal container utama
+            document.querySelector('.overflow-y-auto').scrollTop = 0;
         }
     </script>
 </body>
-                        </html>
-                        
+    </html>
+    
