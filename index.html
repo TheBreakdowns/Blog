@@ -15,12 +15,10 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
-    <script src="./data/gaming.js"></script>
-    <script src="./data/music.js"></script>
-    <script src="./data/coding.js"></script>
 </head>
 <body class="bg-discord-dark text-white font-sans flex flex-col md:flex-row min-h-screen w-full overflow-x-hidden">
 
+    <!-- SIDEBAR LEFT -->
     <div class="hidden md:flex w-60 bg-discord-sidebar flex-col justify-between flex-shrink-0 border-r border-zinc-800 min-h-screen sticky top-0">
         <div>
             <div class="h-12 border-b border-zinc-800 flex items-center px-4 font-bold shadow-sm text-sm uppercase tracking-wider truncate">🌐 Breakdowns Blog</div>
@@ -49,6 +47,7 @@
         </div>
     </div>
 
+    <!-- HEADER & KATEGORI MOBILE -->
     <div class="block md:hidden bg-discord-dark p-3 border-b border-zinc-800 w-full flex-shrink-0 select-none sticky top-0 z-50">
         <div class="flex items-center gap-2 mb-2"><span class="text-sm font-bold tracking-wide">🎮 Breakdowns Room</span></div>
         <div class="w-full overflow-x-scroll no-scrollbar touch-pan-x">
@@ -61,6 +60,7 @@
         </div>
     </div>
 
+    <!-- AREA UTAMA -->
     <div class="flex-1 bg-discord-main flex flex-col min-w-0 min-h-full">
         <div class="hidden md:flex h-12 border-b border-zinc-800 items-center px-4 shadow-sm text-sm font-bold gap-2 flex-shrink-0">
             <span class="text-xl text-discord-muted">#</span> <span id="room-header-title">welcome-links</span>
@@ -68,6 +68,7 @@
         </div>
 
         <div class="p-4 space-y-5 pb-32 md:pb-12 flex-1">
+            <!-- VIEW 1: SOSMED UTAMA -->
             <div id="welcome-links-view" class="space-y-5">
                 <div class="border-b border-zinc-700/50 pb-4 flex items-center gap-3">
                     <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" class="w-12 h-12 rounded-full object-cover border border-zinc-600 shadow-lg">
@@ -76,24 +77,19 @@
                         <p class="text-xs text-discord-muted">| Tempat nongkrong & link sosmed resmi.</p>
                     </div>
                 </div>
-                <div class="space-y-2.5 max-w-2xl w-full">
-                    <div id="sosmed-container" class="space-y-2.5"></div>
-                </div>
+                <div id="sosmed-container" class="space-y-2.5 max-w-2xl w-full"></div>
             </div>
 
+            <!-- VIEW 2: KONTEN ROOM CHAT -->
             <div id="blog-posts-view" class="hidden space-y-6"></div>
         </div>
     </div>
 
+    <!-- ENGINE JAVASCRIPT LOCAL & RINGAN -->
     <script>
-        const descriptions = {
-            'welcome-links': 'Social media directory for Breakdowns Blog',
-            'gaming': 'Tempat review jujur seputar game.',
-            'music': 'Jamming session & track harian.',
-            'coding': 'Catatan development & update tech log.'
-        };
+        const descriptions = { 'welcome-links': 'Social media directory for Breakdowns Blog', 'gaming': 'Tempat review jujur seputar game.', 'music': 'Jamming session & track harian.', 'coding': 'Catatan development & update tech log.' };
 
-        // Data 12 Sosmed Lengkap dipindah ke sini biar HTML tidak kepanjangan
+        // Database Sosmed Utama Lu (12 Lengkap)
         const sosmedList = [
             { name: "Instagram", user: "@hftzphas", url: "https://www.instagram.com/hftzphas", icon: "fa-brands fa-instagram", bg: "bg-pink-600/20 text-pink-500" },
             { name: "X / Twitter", user: "@hftzphas", url: "https://x.com/hftzphas", icon: "fa-brands fa-x-twitter", bg: "bg-zinc-700/40 text-zinc-300" },
@@ -109,7 +105,21 @@
             { name: "Mastodon", user: "@hftzphas", url: "https://mastodon.social/@hftzphas", icon: "fa-brands fa-mastodon", bg: "bg-purple-600/20 text-purple-400" }
         ];
 
-        // Cetak 12 sosmed pas halaman pertama kali dibuka
+        // Database Tulisan Blog Halaman (Langsung Di Sini Biar Anti-Gagal!)
+        const blogDatabase = {
+            gaming: [
+                { title: "Short Review: Meta Mobile Legends Season Ini 🎮", content: "Jujur season sekarang makin chaos semenjak patch talent sama penyesuaian equipment defense kemarin. Hero-hero assassin yang punya high mekanik kembali naik daun di jungle, bikin marksman makin gak tenang tidurnya kalau gak dijaga ketat sama roamer.", timestamp: "Hari ini pukul 18:45", emoji: "👍", reactions: 24 },
+                { title: "", content: "Baru main game Cyberpunk selama 3 jam nonstop hari ini. Sumpah, grafik 10/10 setelah update terbaru, tapi mekanik combat-nya masih agak kaku dikit di awal. Kalau lu suka tipe game eksplorasi kota distopia distrik malam, wajib angkat sih pas lagi diskon!", timestamp: "Kemarin pukul 14:20", emoji: "🔥", reactions: 12 }
+            ],
+            music: [
+                { title: "🎵 Breakdowns Official Playlist is LIVE!", content: "Buat lu pada yang nyari temen fokus pas lagi coding, nge-game, atau sekadar pengen nyantai sore, langsung gas dengerin playlist buatan gue di Spotify. Racikan lagunya pas dan konsisten sepanjang nge-track.<br><br>👉 <strong>Link Playlist:</strong> <a href='https://open.spotify.com/playlist/38xujwdY9rSGTDm3eqzbgL?si=Z_rrJ-_-RyuJqnFBFi3aGg' target='_blank' class='text-discord-blurple hover:underline font-medium'>Klik di sini untuk dengerin langsung</a>", timestamp: "Hari ini pukul 08:32", emoji: "🎧", reactions: 18 }
+            ],
+            coding: [
+                { title: "Dev Log: Sukses Kelarin Desain Blog Khas Discord! 🚀", content: "Akhirnya selesai juga ngulik sistem pindah halaman instan tanpa reload pakai JavaScript murni. Sekarang kodenya ngumpul super rapi di satu file tanpa butuh settingan server lokal yang ribet.", timestamp: "Baru saja", emoji: "💻", reactions: 10 }
+            ]
+        };
+
+        // Render 12 sosmed pas loading awal
         document.getElementById('sosmed-container').innerHTML = sosmedList.map(s => `
             <div class="bg-[#2f3136] rounded border border-zinc-700/60 p-3 flex justify-between items-center hover:border-discord-blurple hover:bg-[#393c43] transform hover:-translate-y-0.5 transition-all duration-200 gap-3">
                 <div class="flex items-center gap-3 min-w-0">
@@ -146,13 +156,8 @@
             } else {
                 sosmedView.classList.add('hidden');
                 blogView.classList.remove('hidden');
-                
-                // Ambil data dari folder /data/ yang sudah diload di <head>
-                let posts = [];
-                if(roomName === 'gaming') posts = typeof dataGaming !== 'undefined' ? dataGaming : [];
-                if(roomName === 'music') posts = typeof dataMusic !== 'undefined' ? dataMusic : [];
-                if(roomName === 'coding') posts = typeof dataCoding !== 'undefined' ? dataCoding : [];
 
+                const posts = blogDatabase[roomName] || [];
                 let htmlContent = `
                     <div class="border-b border-zinc-700/50 pb-4">
                         <div class="w-12 h-12 bg-zinc-700 rounded-full flex items-center justify-center mb-2"><i class="fa-solid fa-hashtag text-2xl text-white"></i></div>
@@ -167,8 +172,8 @@
                             <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
                             <div>
                                 <div class="flex items-baseline gap-2">
-                                    <span class="font-bold text-sm text-white hover:underline cursor-pointer">${post.username}</span>
-                                    <span class="text-[10px] text-discord-muted font-normal">#${post.tag}</span>
+                                    <span class="font-bold text-sm text-white hover:underline cursor-pointer">hafitz</span>
+                                    <span class="text-[10px] text-discord-muted font-normal">#0001</span>
                                     <span class="text-[10px] text-discord-muted font-normal">${post.timestamp}</span>
                                 </div>
                                 <div class="text-sm text-zinc-200 mt-1 space-y-2 max-w-2xl">
