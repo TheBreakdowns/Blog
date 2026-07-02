@@ -1,1 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- JUDUL TAB & META OG PREVIEW -->
+    <title>Hafitz P. H. A. S.</title>
+    <meta property="og:title" content="Hafitz | Official Link & Blog">
+    <meta property="og:site_name" content="Hafitz">
+    <meta property="og:description" content="Let's connect! Tap here to find all my Social Media profiles.">
+    <meta property="og:type" content="profile">
+    <meta property="og:image" content="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg">
+    
+    <!-- CSS & FONTS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        .bg-discord-dark { background-color: #202225; }
+        .bg-discord-sidebar { background-color: #2f3136; }
+        .bg-discord-main { background-color: #36393f; }
+        .bg-discord-blurple { background-color: #5865F2; }
+        .text-discord-muted { color: #b9bbbe; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeInSlide 0.25s ease-out forwards; }
+    </style>
+    <!-- LOAD DATA EKSTERNAL -->
+    <script src="./data/gaming.js"></script>
+    <script src="./data/music.js"></script>
+    <script src="./data/coding.js"></script>
+</head>
+<body class="bg-discord-dark text-white font-sans flex flex-col md:flex-row min-h-screen w-full overflow-x-hidden select-none">
 
+    <!-- SIDEBAR LEFT DESKTOP -->
+    <div class="hidden md:flex w-60 bg-discord-sidebar flex-col justify-between flex-shrink-0 border-r border-zinc-800 min-h-screen sticky top-0">
+        <div>
+            <div class="h-12 border-b border-zinc-800 flex items-center px-4 font-bold shadow-sm text-sm uppercase tracking-wider truncate">🌐 Breakdowns Blog</div>
+            <div class="p-2 space-y-1">
+                <p class="text-xs font-semibold text-discord-muted px-2 uppercase tracking-wider">Info & Links</p>
+                <button onclick="switchRoom('welcome-links')" id="btn-welcome-links" class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left bg-zinc-700 text-white">
+                    <span class="text-xl text-discord-muted">#</span> welcome-links
+                </button>
+                <p class="text-xs font-semibold text-discord-muted px-2 uppercase tracking-wider mt-4">Blog Categories</p>
+                <button onclick="switchRoom('gaming')" id="btn-gaming" class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left text-discord-muted hover:bg-zinc-700/50 hover:text-white"><span class="text-xl">#</span> gaming</button>
+                <button onclick="switchRoom('music')" id="btn-music" class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left text-discord-muted hover:bg-zinc-700/50 hover:text-white"><span class="text-xl">#</span> music</button>
+                <button onclick="switchRoom('coding')" id="btn-coding" class="w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left text-discord-muted hover:bg-zinc-700/50 hover:text-white"><span class="text-xl">#</span> coding</button>
+            </div>
+        </div>
+        <div class="p-2 bg-[#292b2f] flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="relative">
+                    <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" class="w-8 h-8 rounded-full object-cover">
+                    <div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-[#292b2f]"></div>
+                </div>
+                <div><p class="text-xs font-bold leading-tight">hafitz</p><p class="text-[10px] text-discord-muted leading-none">#0001</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER & KATEGORI MOBILE -->
+    <div class="block md:hidden bg-discord-dark p-3 border-b border-zinc-800 w-full flex-shrink-0 sticky top-0 z-50">
+        <div class="flex items-center gap-2 mb-2"><span class="text-sm font-bold tracking-wide">🎮 Breakdowns Room</span></div>
+        <div class="w-full overflow-x-scroll no-scrollbar touch-pan-x">
+            <div class="flex flex-nowrap gap-2 pb-1 w-max">
+                <button onclick="switchRoom('welcome-links')" id="mbtn-welcome-links" class="text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap bg-discord-blurple text-white"># welcome-links</button>
+                <button onclick="switchRoom('gaming')" id="mbtn-gaming" class="text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap bg-[#2f3136] text-discord-muted hover:text-white"># gaming</button>
+                <button onclick="switchRoom('music')" id="mbtn-music" class="text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap bg-[#2f3136] text-discord-muted hover:text-white"># music</button>
+                <button onclick="switchRoom('coding')" id="mbtn-coding" class="text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap bg-[#2f3136] text-discord-muted hover:text-white"># coding</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AREA UTAMA -->
+    <div class="flex-1 bg-discord-main flex flex-col min-w-0 min-h-screen">
+        <!-- Top Title Bar -->
+        <div class="hidden md:flex h-12 border-b border-zinc-800 items-center px-4 shadow-sm text-sm font-bold gap-2 flex-shrink-0">
+            <span class="text-xl text-discord-muted">#</span> <span id="room-header-title">welcome-links</span>
+            <span class="text-xs font-normal text-discord-muted border-l border-zinc-700 pl-2" id="room-header-desc">Social media directory for Breakdowns Blog</span>
+        </div>
+
+        <!-- Wadah Konten Utama (Dibuat max-w-4xl mx-auto agar sangat proporsional di PC/Android Desktop) -->
+        <div class="p-4 space-y-6 flex-1 overflow-y-auto w-full max-w-4xl mx-auto pb-24 md:pb-12 no-scrollbar">
+            <!-- VIEW 1: SOSMED VIEW -->
+            <div id="welcome-links-view" class="space-y-5 w-full">
+                <div class="border-b border-zinc-700/50 pb-4 flex items-center gap-3 w-full">
+                    <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" class="w-12 h-12 rounded-full object-cover border border-zinc-600 shadow-lg">
+                    <div>
+                        <span class="text-lg font-bold text-white block">Hafitz P. H. A. S.</span>
+                        <p class="text-xs text-discord-muted">| Tempat nongkrong & link sosmed resmi.</p>
+                    </div>
+                </div>
+                <!-- Container Grid Sosmed -->
+                <div id="sosmed-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full"></div>
+            </div>
+
+            <!-- VIEW 2: CONTAINER CHAT BLOG CHANNELS -->
+            <div id="blog-posts-view" class="hidden space-y-6 w-full"></div>
+        </div>
+    </div>
+
+    <!-- LOGIKA CORE SPA & RENDER ENGINE -->
+    <script>
+        const descriptions = { 'welcome-links': 'Social media directory for Breakdowns Blog', 'gaming': 'Tempat ulasan jujur seputar game.', 'music': 'Jamming session & track harian.', 'coding': 'Catatan development & update tech log.' };
+
+        const sosmedList = [
+            { name: "Instagram", user: "@hftzphas", url: "https://www.instagram.com/hftzphas", icon: "fa-brands fa-instagram", bg: "bg-pink-600/20 text-pink-500" },
+            { name: "X / Twitter", user: "@hftzphas", url: "https://x.com/hftzphas", icon: "fa-brands fa-x-twitter", bg: "bg-zinc-700/40 text-zinc-300" },
+            { name: "GitHub", user: "@breakdowns", url: "https://github.com/breakdowns", icon: "fa-brands fa-github", bg: "bg-zinc-900/40 text-zinc-300" },
+            { name: "Discord", user: "View Profile", url: "https://discord.com/users/455173359924412434", icon: "fa-brands fa-discord", bg: "bg-indigo-600/20 text-indigo-400" },
+            { name: "Telegram", user: "@hafitzXD", url: "https://t.me/hafitzXD", icon: "fa-brands fa-telegram", bg: "bg-blue-500/20 text-blue-400" },
+            { name: "YouTube", user: "@hafitz", url: "https://youtube.com/@hafitz", icon: "fa-brands fa-youtube", bg: "bg-red-600/20 text-red-500" },
+            { name: "TikTok", user: "@hftzphas", url: "https://www.tiktok.com/@hftzphas", icon: "fa-brands fa-tiktok", bg: "bg-zinc-800 text-white" },
+            { name: "Threads", user: "@hftzphas", url: "https://www.threads.net/@hftzphas", icon: "fa-brands fa-threads", bg: "bg-zinc-700/50 text-white" },
+            { name: "Facebook", user: "hftzphas", url: "https://www.facebook.com/hftzphas", icon: "fa-brands fa-facebook", bg: "bg-blue-600/20 text-blue-500" },
+            { name: "Spotify", user: "Music Playlist", url: "https://open.spotify.com/user/7wxw9ydcqjc4ta495h73jpcjf", icon: "fa-brands fa-spotify", bg: "bg-green-500/20 text-green-400" },
+            { name: "Reddit", user: "u/hftzphas", url: "https://reddit.com/u/hftzphas", icon: "fa-brands fa-reddit", bg: "bg-orange-600/20 text-orange-500" },
+            { name: "Mastodon", user: "@hftzphas", url: "https://mastodon.social/@hftzphas", icon: "fa-brands fa-mastodon", bg: "bg-purple-600/20 text-purple-400" }
+        ];
+
+        // FIXED OPTIMIZATION: Menambahkan min-h-[76px] dan padding lebih tebal (p-4) agar kartu sosmed terlihat padat vertikal mengisi layar bawah
+        document.getElementById('sosmed-container').innerHTML = sosmedList.map(s => `
+            <div class="bg-[#2f3136] rounded-md border border-zinc-700/50 p-4 min-h-[76px] flex justify-between items-center hover:border-discord-blurple hover:bg-[#393c43] transform hover:-translate-y-0.5 transition-all duration-200 gap-3 w-full">
+                <div class="flex items-center gap-3.5 min-w-0">
+                    <div class="w-10 h-10 ${s.bg} rounded flex items-center justify-center text-xl flex-shrink-0"><i class="${s.icon}"></i></div>
+                    <div class="min-w-0"><h3 class="font-bold text-sm text-white truncate">${s.name}</h3><p class="text-xs text-discord-muted truncate mt-0.5">${s.user}</p></div>
+                </div>
+                <a href="${s.url}" target="_blank" class="bg-discord-blurple hover:bg-[#4752C4] text-xs font-bold px-4 py-2 rounded transition-colors flex-shrink-0 shadow-sm">Open</a>
+            </div>
+        `).join('');
+
+        function switchRoom(roomName) {
+            document.getElementById('room-header-title').innerText = roomName;
+            document.getElementById('room-header-desc').innerText = descriptions[roomName] || '';
+
+            const menus = ['welcome-links', 'gaming', 'music', 'coding'];
+            menus.forEach(m => {
+                const dBtn = document.getElementById(`btn-${m}`);
+                const mBtn = document.getElementById(`mbtn-${m}`);
+                if(m === roomName) {
+                    if(dBtn) dBtn.className = "w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left bg-zinc-700 text-white";
+                    if(mBtn) mBtn.className = "text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap bg-discord-blurple text-white";
+                } else {
+                    if(dBtn) dBtn.className = "w-full flex items-center gap-2 px-2 py-1.5 rounded text-sm font-medium transition-colors text-left text-discord-muted hover:bg-zinc-700/50 hover:text-white";
+                    if(mBtn) mBtn.className = "text-xs font-medium px-3 py-1.5 rounded-md whitespace-nowrap bg-[#2f3136] text-discord-muted hover:text-white";
+                }
+            });
+
+            const sosmedView = document.getElementById('welcome-links-view');
+            const blogView = document.getElementById('blog-posts-view');
+
+            blogView.classList.remove('animate-fade-in');
+            sosmedView.classList.remove('animate-fade-in');
+            void blogView.offsetWidth; void sosmedView.offsetWidth;
+
+            if (roomName === 'welcome-links') {
+                sosmedView.classList.remove('hidden');
+                blogView.classList.add('hidden');
+                sosmedView.classList.add('animate-fade-in');
+            } else {
+                sosmedView.classList.add('hidden');
+                blogView.classList.remove('hidden');
+                blogView.classList.add('animate-fade-in');
+
+                let posts = [];
+                if(roomName === 'gaming') posts = window.dataGaming || [];
+                if(roomName === 'music') posts = window.dataMusic || [];
+                if(roomName === 'coding') posts = window.dataCoding || [];
+
+                let htmlContent = `
+                    <div class="border-b border-zinc-700/50 pb-4 w-full">
+                        <div class="w-12 h-12 bg-zinc-700 rounded-full flex items-center justify-center mb-2"><i class="fa-solid fa-hashtag text-2xl text-white"></i></div>
+                        <h1 class="text-2xl font-bold">Selamat datang di #${roomName}!</h1>
+                        <p class="text-sm text-discord-muted">Ini adalah awal mula dari channel #${roomName}.</p>
+                    </div>
+                `;
+
+                posts.forEach(post => {
+                    htmlContent += `
+                        <div class="flex gap-3 items-start hover:bg-zinc-800/20 p-2 rounded transition-colors w-full">
+                            <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" class="w-10 h-10 rounded-full object-cover flex-shrink-0">
+                            <div class="w-full min-w-0">
+                                <div class="flex items-baseline gap-2">
+                                    <span class="font-bold text-sm text-white hover:underline cursor-pointer">hafitz</span>
+                                    <span class="text-[10px] text-discord-muted font-normal">#0001</span>
+                                    <span class="text-[10px] text-discord-muted font-normal">${post.timestamp}</span>
+                                </div>
+                                <div class="text-sm text-zinc-200 mt-1 space-y-2 w-full">
+                                    ${post.title ? `<p class="font-semibold text-discord-blurple text-base">${post.title}</p>` : ''}
+                                    <p>${post.content}</p>
+                                    ${post.spotifyEmbed ? `
+                                        <div class="mt-3 max-w-2xl w-full rounded-xl overflow-hidden shadow-2xl border border-zinc-700/40">
+                                            <iframe src="${post.spotifyEmbed}" width="100%" height="380" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                                        </div>
+                                    ` : ''}
+                                </div>
+                                <div class="flex items-center gap-1 mt-2">
+                                    <div class="bg-[#2f3136] hover:bg-zinc-600 px-2 py-1 rounded text-xs flex items-center gap-1.5 cursor-pointer border border-zinc-700/50 select-none">
+                                        <span>${post.emoji}</span> <span class="text-discord-muted font-bold text-[11px]">${post.reactions}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                blogView.innerHTML = htmlContent;
+            }
+            document.querySelector('.overflow-y-auto').scrollTop = 0;
+        }
+    </script>
+</body>
+                  </html>
+                  
