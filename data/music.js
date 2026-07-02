@@ -1,4 +1,4 @@
-export default [
+var dataMusic = [
     {
         username: "hafitz",
         tag: "0001",
