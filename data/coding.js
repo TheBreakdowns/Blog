@@ -1,4 +1,4 @@
-export default [
+var dataCoding = [
     {
         username: "hafitz",
         tag: "0001",
