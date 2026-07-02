@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- JUDUL TAB & META OG PREVIEW -->
     <title>Hafitz P. H. A. S.</title>
     <meta property="og:title" content="Hafitz | Official Link & Blog">
     <meta property="og:site_name" content="Hafitz">
@@ -12,7 +11,6 @@
     <meta property="og:type" content="profile">
     <meta property="og:image" content="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg">
     
-    <!-- CSS & FONTS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
@@ -29,14 +27,12 @@
         }
         .animate-fade-in { animation: fadeInSlide 0.25s ease-out forwards; }
     </style>
-    <!-- LOAD DATA EKSTERNAL -->
     <script src="./data/gaming.js"></script>
     <script src="./data/music.js"></script>
     <script src="./data/coding.js"></script>
 </head>
 <body class="bg-discord-dark text-white font-sans flex flex-col md:flex-row min-h-screen w-full overflow-x-hidden select-none">
 
-    <!-- SIDEBAR LEFT DESKTOP -->
     <div class="hidden md:flex w-60 bg-discord-sidebar flex-col justify-between flex-shrink-0 border-r border-zinc-800 min-h-screen sticky top-0">
         <div>
             <div class="h-12 border-b border-zinc-800 flex items-center px-4 font-bold shadow-sm text-sm uppercase tracking-wider truncate">🌐 Breakdowns Blog</div>
@@ -62,7 +58,6 @@
         </div>
     </div>
 
-    <!-- HEADER & KATEGORI MOBILE -->
     <div class="block md:hidden bg-discord-dark p-3 border-b border-zinc-800 w-full flex-shrink-0 sticky top-0 z-50">
         <div class="flex items-center gap-2 mb-2"><span class="text-sm font-bold tracking-wide">🎮 Breakdowns Room</span></div>
         <div class="w-full overflow-x-scroll no-scrollbar touch-pan-x">
@@ -75,18 +70,15 @@
         </div>
     </div>
 
-    <!-- AREA UTAMA -->
-    <div class="flex-1 bg-discord-main flex flex-col min-w-0 min-h-screen">
-        <!-- Top Title Bar -->
+    <div class="flex-1 bg-discord-main flex flex-col min-w-0 min-h-screen h-screen overflow-hidden">
         <div class="hidden md:flex h-12 border-b border-zinc-800 items-center px-4 shadow-sm text-sm font-bold gap-2 flex-shrink-0">
             <span class="text-xl text-discord-muted">#</span> <span id="room-header-title">welcome-links</span>
             <span class="text-xs font-normal text-discord-muted border-l border-zinc-700 pl-2" id="room-header-desc">Social media directory for Breakdowns Blog</span>
         </div>
 
-        <!-- Wadah Konten Utama (max-w-6xl untuk mengakomodasi sebaran 3 kolom) -->
-        <div class="p-4 space-y-6 flex-1 overflow-y-auto w-full max-w-6xl mx-auto pb-24 md:pb-12 no-scrollbar">
-            <!-- VIEW 1: SOSMED VIEW -->
-            <div id="welcome-links-view" class="space-y-5 w-full">
+        <div class="p-4 flex-1 overflow-y-auto w-full max-w-6xl mx-auto pb-24 md:pb-12 no-scrollbar flex flex-col">
+            
+            <div id="welcome-links-view" class="space-y-5 w-full md:min-h-[80vh] flex flex-col justify-center">
                 <div class="border-b border-zinc-700/50 pb-4 flex items-center gap-3 w-full">
                     <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" class="w-12 h-12 rounded-full object-cover border border-zinc-600 shadow-lg">
                     <div>
@@ -94,16 +86,13 @@
                         <p class="text-xs text-discord-muted">| Tempat nongkrong & link sosmed resmi.</p>
                     </div>
                 </div>
-                <!-- FIXED OPTIMIZATION: Mengubah grid menjadi md:grid-cols-3 agar melebar 3 kolom seimbang -->
                 <div id="sosmed-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 w-full"></div>
             </div>
 
-            <!-- VIEW 2: CONTAINER CHAT BLOG CHANNELS -->
             <div id="blog-posts-view" class="hidden space-y-6 w-full"></div>
         </div>
     </div>
 
-    <!-- LOGIKA CORE SPA & RENDER ENGINE -->
     <script>
         const descriptions = { 'welcome-links': 'Social media directory for Breakdowns Blog', 'gaming': 'Tempat ulasan jujur seputar game.', 'music': 'Jamming session & track harian.', 'coding': 'Catatan development & update tech log.' };
 
@@ -212,4 +201,5 @@
         }
     </script>
 </body>
-</html>
+                    </html>
+                    
