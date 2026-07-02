@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- JUDUL TAB & META OG PREVIEW -->
     <title>Hafitz P. H. A. S.</title>
+    
+    <!-- META OG PREVIEW -->
     <meta property="og:title" content="Hafitz | Official Link & Blog">
     <meta property="og:site_name" content="Hafitz">
     <meta property="og:description" content="Let's connect! Tap here to find all my Social Media profiles.">
@@ -23,13 +23,19 @@
         .text-discord-muted { color: #b9bbbe; }
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        /* Animasi Micro-Interaction Fade In */
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeInSlide 0.25s ease-out forwards; }
     </style>
-    <!-- LOAD DATA SECARA AMAN (ANTI CORS LOKAL) -->
+    <!-- LOAD DATA EKSTERNAL (ANTI CORS LOKAL) -->
     <script src="./data/gaming.js"></script>
     <script src="./data/music.js"></script>
     <script src="./data/coding.js"></script>
 </head>
-<body class="bg-discord-dark text-white font-sans flex flex-col md:flex-row min-h-screen w-full overflow-x-hidden">
+<body class="bg-discord-dark text-white font-sans flex flex-col md:flex-row min-h-screen w-full overflow-x-hidden select-none">
 
     <!-- SIDEBAR LEFT DESKTOP -->
     <div class="hidden md:flex w-60 bg-discord-sidebar flex-col justify-between flex-shrink-0 border-r border-zinc-800 min-h-screen sticky top-0">
@@ -58,7 +64,7 @@
     </div>
 
     <!-- HEADER & KATEGORI MOBILE -->
-    <div class="block md:hidden bg-discord-dark p-3 border-b border-zinc-800 w-full flex-shrink-0 select-none sticky top-0 z-50">
+    <div class="block md:hidden bg-discord-dark p-3 border-b border-zinc-800 w-full flex-shrink-0 sticky top-0 z-50">
         <div class="flex items-center gap-2 mb-2"><span class="text-sm font-bold tracking-wide">🎮 Breakdowns Room</span></div>
         <div class="w-full overflow-x-scroll no-scrollbar touch-pan-x">
             <div class="flex flex-nowrap gap-2 pb-1 w-max">
@@ -70,15 +76,16 @@
         </div>
     </div>
 
-    <!-- AREA UTAMA -->
+    <!-- AREA KONTEN TENGAH UTAMA -->
     <div class="flex-1 bg-discord-main flex flex-col min-w-0 min-h-full">
+        <!-- Top Title Bar -->
         <div class="hidden md:flex h-12 border-b border-zinc-800 items-center px-4 shadow-sm text-sm font-bold gap-2 flex-shrink-0">
             <span class="text-xl text-discord-muted">#</span> <span id="room-header-title">welcome-links</span>
             <span class="text-xs font-normal text-discord-muted border-l border-zinc-700 pl-2" id="room-header-desc">Social media directory for Breakdowns Blog</span>
         </div>
 
-        <div class="p-4 space-y-5 pb-32 md:pb-12 flex-1">
-            <!-- VIEW 1: LANDING PAGE SOSMED UTAMA -->
+        <div class="p-4 space-y-5 pb-32 md:pb-12 flex-1 overflow-y-auto">
+            <!-- VIEW 1: SOSMED VIEW -->
             <div id="welcome-links-view" class="space-y-5 w-full">
                 <div class="border-b border-zinc-700/50 pb-4 flex items-center gap-3 w-full">
                     <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" class="w-12 h-12 rounded-full object-cover border border-zinc-600 shadow-lg">
@@ -87,20 +94,72 @@
                         <p class="text-xs text-discord-muted">| Tempat nongkrong & link sosmed resmi.</p>
                     </div>
                 </div>
-                <!-- FIXED: max-w-2xl dibuang, diganti w-full biar melebar penuh ke kanan -->
-                <div id="sosmed-container" class="space-y-2.5 w-full"></div>
+                <!-- FIXED: Diubah jadi grid-cols-1 md:grid-cols-2 biar membagi 2 kolom pas di PC -->
+                <div id="sosmed-container" class="grid grid-cols-1 md:grid-cols-2 gap-2.5 w-full"></div>
             </div>
 
-            <!-- VIEW 2: CONTAINER CHAT BLOG CHANNELS -->
+            <!-- VIEW 2: BLOG CONTENT AREA -->
             <div id="blog-posts-view" class="hidden space-y-6 w-full"></div>
         </div>
     </div>
 
-    <!-- LOGIKA CORE SPA & RENDER ENGINE -->
+    <!-- SIDEBAR RIGHT DESKTOP: SEARCH, TRENDING, & SPOTIFY WIDGET -->
+    <div class="hidden lg:flex w-72 bg-discord-sidebar flex-col p-4 flex-shrink-0 border-l border-zinc-800 min-h-screen sticky top-0 space-y-6">
+        <!-- 4. KOTAK SEARCH MESSAGES -->
+        <div class="relative w-full">
+            <input type="text" placeholder="Search Messages..." class="w-full h-8 bg-[#202225] rounded px-3 text-xs text-zinc-200 placeholder-zinc-500 focus:outline-none border border-transparent focus:border-discord-blurple transition-all">
+            <i class="fa-solid fa-magnifying-glass absolute right-2.5 top-2.5 text-xs text-zinc-500"></i>
+        </div>
+
+        <!-- 4. FILTER TREN / TOP MANAGEMENT TOPIC -->
+        <div class="space-y-2">
+            <p class="text-xs font-bold text-discord-muted uppercase tracking-wider">🔥 Trending Topics</p>
+            <div class="space-y-1.5">
+                <div class="bg-[#202225]/50 p-2 rounded border border-zinc-800 hover:border-zinc-700 cursor-pointer transition-colors">
+                    <p class="text-[11px] text-discord-blurple font-semibold">#gaming</p>
+                    <p class="text-xs font-bold text-zinc-200 truncate">Meta Mobile Legends Season Ini</p>
+                </div>
+                <div class="bg-[#202225]/50 p-2 rounded border border-zinc-800 hover:border-zinc-700 cursor-pointer transition-colors">
+                    <p class="text-[11px] text-discord-blurple font-semibold">#coding</p>
+                    <p class="text-xs font-bold text-zinc-200 truncate">Sistem SPA JavaScript Murni</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. WIDGET "NOW PLAYING" SPOTIFY BESAR STYLE DISCORD PROFILE -->
+        <div class="space-y-2">
+            <p class="text-xs font-bold text-discord-muted uppercase tracking-wider">🎵 Listening to Spotify</p>
+            <div class="bg-[#202225] rounded-xl p-3 border border-zinc-800 flex flex-col space-y-3 shadow-lg relative overflow-hidden">
+                <div class="flex items-start gap-3">
+                    <div class="relative flex-shrink-0">
+                        <img src="https://raw.githubusercontent.com/breakdowns/website/refs/heads/master/images/me.jpg" class="w-16 h-16 rounded-lg object-cover border border-zinc-800 shadow">
+                        <i class="fa-brands fa-spotify text-green-500 text-lg absolute -bottom-1 -right-1 bg-[#202225] rounded-full p-0.5"></i>
+                    </div>
+                    <div class="min-w-0 flex-1">
+                        <h4 class="text-xs font-bold text-white truncate hover:underline cursor-pointer">Metalcore, Post-Hardcore</h4>
+                        <p class="text-[11px] text-zinc-300 truncate mt-0.5">by Hafitz</p>
+                        <p class="text-[10px] text-discord-muted truncate mt-0.5">on Breakdowns Playlist</p>
+                    </div>
+                </div>
+                <!-- Progress Bar Palsu -->
+                <div class="space-y-1">
+                    <div class="w-full bg-zinc-700 h-1 rounded-full overflow-hidden">
+                        <div class="bg-green-500 h-full w-[45%] rounded-full"></div>
+                    </div>
+                    <div class="flex justify-between text-[9px] text-discord-muted font-mono">
+                        <span>01:24</span>
+                        <span>03:01</span>
+                    </div>
+                </div>
+                <a href="https://open.spotify.com/playlist/38xujwdY9rSGTDm3eqzbgL?si=Z_rrJ-_-RyuJqnFBFi3aGg" target="_blank" class="w-full bg-[#2f3136] hover:bg-zinc-700 text-center text-xs font-bold py-1.5 rounded-lg border border-zinc-700/40 transition-colors block">View Playlist</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIKA CORE SPA ENGINE -->
     <script>
         const descriptions = { 'welcome-links': 'Social media directory for Breakdowns Blog', 'gaming': 'Tempat review jujur seputar game.', 'music': 'Jamming session & track harian.', 'coding': 'Catatan development & update tech log.' };
 
-        // Database Sosmed Utama Lu (12 LENGKAP + REDDIT & MASTODON BALIK)
         const sosmedList = [
             { name: "Instagram", user: "@hftzphas", url: "https://www.instagram.com/hftzphas", icon: "fa-brands fa-instagram", bg: "bg-pink-600/20 text-pink-500" },
             { name: "X / Twitter", user: "@hftzphas", url: "https://x.com/hftzphas", icon: "fa-brands fa-x-twitter", bg: "bg-zinc-700/40 text-zinc-300" },
@@ -146,12 +205,19 @@
             const sosmedView = document.getElementById('welcome-links-view');
             const blogView = document.getElementById('blog-posts-view');
 
+            // 2. MICRO-INTERACTION ANIMATION RESET
+            blogView.classList.remove('animate-fade-in');
+            sosmedView.classList.remove('animate-fade-in');
+            void blogView.offsetWidth; void sosmedView.offsetWidth; // Trigger reflow
+
             if (roomName === 'welcome-links') {
                 sosmedView.classList.remove('hidden');
                 blogView.classList.add('hidden');
+                sosmedView.classList.add('animate-fade-in');
             } else {
                 sosmedView.classList.add('hidden');
                 blogView.classList.remove('hidden');
+                blogView.classList.add('animate-fade-in');
 
                 let posts = [];
                 if(roomName === 'gaming') posts = window.dataGaming || [];
@@ -200,5 +266,4 @@
         }
     </script>
 </body>
-    </html>
-    
+</html>
