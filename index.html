@@ -83,8 +83,8 @@
             <span class="text-xs font-normal text-discord-muted border-l border-zinc-700 pl-2" id="room-header-desc">Social media directory for Breakdowns Blog</span>
         </div>
 
-        <!-- Wadah Konten Utama (Dibuat max-w-4xl mx-auto agar sangat proporsional di PC/Android Desktop) -->
-        <div class="p-4 space-y-6 flex-1 overflow-y-auto w-full max-w-4xl mx-auto pb-24 md:pb-12 no-scrollbar">
+        <!-- Wadah Konten Utama (max-w-6xl untuk mengakomodasi sebaran 3 kolom) -->
+        <div class="p-4 space-y-6 flex-1 overflow-y-auto w-full max-w-6xl mx-auto pb-24 md:pb-12 no-scrollbar">
             <!-- VIEW 1: SOSMED VIEW -->
             <div id="welcome-links-view" class="space-y-5 w-full">
                 <div class="border-b border-zinc-700/50 pb-4 flex items-center gap-3 w-full">
@@ -94,8 +94,8 @@
                         <p class="text-xs text-discord-muted">| Tempat nongkrong & link sosmed resmi.</p>
                     </div>
                 </div>
-                <!-- Container Grid Sosmed -->
-                <div id="sosmed-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full"></div>
+                <!-- FIXED OPTIMIZATION: Mengubah grid menjadi md:grid-cols-3 agar melebar 3 kolom seimbang -->
+                <div id="sosmed-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3.5 w-full"></div>
             </div>
 
             <!-- VIEW 2: CONTAINER CHAT BLOG CHANNELS -->
@@ -122,7 +122,6 @@
             { name: "Mastodon", user: "@hftzphas", url: "https://mastodon.social/@hftzphas", icon: "fa-brands fa-mastodon", bg: "bg-purple-600/20 text-purple-400" }
         ];
 
-        // FIXED OPTIMIZATION: Menambahkan min-h-[76px] dan padding lebih tebal (p-4) agar kartu sosmed terlihat padat vertikal mengisi layar bawah
         document.getElementById('sosmed-container').innerHTML = sosmedList.map(s => `
             <div class="bg-[#2f3136] rounded-md border border-zinc-700/50 p-4 min-h-[76px] flex justify-between items-center hover:border-discord-blurple hover:bg-[#393c43] transform hover:-translate-y-0.5 transition-all duration-200 gap-3 w-full">
                 <div class="flex items-center gap-3.5 min-w-0">
@@ -213,5 +212,4 @@
         }
     </script>
 </body>
-                  </html>
-                  
+</html>
