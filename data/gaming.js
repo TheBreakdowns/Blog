@@ -1,4 +1,4 @@
-export default [
+var dataGaming = [
     {
         username: "hafitz",
         tag: "0001",
