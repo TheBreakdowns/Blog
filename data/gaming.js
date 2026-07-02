@@ -1,4 +1,4 @@
-var dataGaming = [
+window.dataGaming = [
     {
         username: "hafitz",
         tag: "0001",
